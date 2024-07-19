@@ -233,4 +233,29 @@ $RECYCLE.BIN/
 #package-lock.json
 package-lock.json
 
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Vite cache
+.vite/
+
+# Local environment variables
+.env
+.env.local
+.env.*.local
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Log files
+logs/
+*.log
+
+# Yarn PnP
+.pnp.*
+
 # End of https://www.toptal.com/developers/gitignore/api/git,react,node,macos,windows,dotenv
