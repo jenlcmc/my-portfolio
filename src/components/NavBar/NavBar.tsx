@@ -9,28 +9,30 @@ import NavLink from "./NavLink";
 import navigationLinks from "../../data/NavData";
 
 const NavBar = () => (
-	<nav className="bg-blue-500">
+	<nav className="bg-gray-800">
 		<Disclosure as="nav">
 			{({ open }) => (
 				<>
-					<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+					<div className="mx-auto">
 						<div className="relative flex items-center justify-between h-16">
-							{/* Mobile menu button */}
-							<DisclosureButton className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700">
-								{open ? (
-									<XMarkIcon
-										className="block h-6 w-6"
-										aria-hidden="true"
-									/>
-								) : (
-									<Bars3Icon
-										className="block h-6 w-6"
-										aria-hidden="true"
-									/>
-								)}
-							</DisclosureButton>
+							{/* Mobile menu button wrapper */}
+							<div className="md:hidden">
+								<DisclosureButton className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700">
+									{open ? (
+										<XMarkIcon
+											className="block h-6 w-6"
+											aria-hidden="true"
+										/>
+									) : (
+										<Bars3Icon
+											className="block h-6 w-6"
+											aria-hidden="true"
+										/>
+									)}
+								</DisclosureButton>
+							</div>
 							{/* Navigation Links */}
-							<div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+							<div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-end">
 								<div className="hidden sm:block sm:ml-6">
 									<div className="flex space-x-4">
 										{navigationLinks.map((item) => (
@@ -52,7 +54,7 @@ const NavBar = () => (
 								<DisclosureButton
 									key={item.name}
 									as="div"
-									className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+									className="text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
 								>
 									<NavLink name={item.name} href={item.href} />
 								</DisclosureButton>
