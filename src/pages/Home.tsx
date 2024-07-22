@@ -60,7 +60,7 @@ const Home = () => {
 				);
 			case "User 3":
 				return (
-					<div className="flex flex-col justify-center items-center text-1xl">
+					<div className="flex flex-col justify-center items-center text-2xl m-4">
 						<TicTacToe />
 					</div>
 				);

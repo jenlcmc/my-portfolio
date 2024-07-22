@@ -93,8 +93,8 @@
 }
 
 .square {
-	width: 40vb;
-	height: 10vh;
+	width: 13vb;
+	height: 13vh;
 	background-color: black;
 	border: 1px solid #999;
 	display: flex;
@@ -102,6 +102,7 @@
 	align-items: center;
 	font-size: 30px;
 	font-weight: bold;
+	overflow: auto;
 }
 
 .status {

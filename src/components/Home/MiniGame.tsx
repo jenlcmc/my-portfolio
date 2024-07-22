@@ -1,48 +1,46 @@
 import { useState } from "react";
 
-// A Square component that displays a button
-function Square({ value, onClick }: { value: string; onClick: () => void }) {
-	return (
-		<button className="square" onClick={onClick}>
-			{value}
-		</button>
-	);
+// Define types for the square values and the square props
+type SquareValue = "X" | "O" | null;
+interface SquareProps {
+	value: SquareValue;
+	onClick: () => void;
 }
 
-// The main Game component that holds the state and logic
-function Game() {
-	// State to keep track of each square's value ('X', 'O', or null)
-	const [squares, setSquares] = useState(Array(9).fill(null));
-	// State to determine which player's turn it is
-	const [isXNext, setIsXNext] = useState(true);
+const Square = ({ value, onClick }: SquareProps) => (
+	<button className="square" onClick={onClick}>
+		{value}
+	</button>
+);
 
-	// Function to handle a square click
-	const handleClick = (index: number) => {
-		// If the game is won or the square is already filled, return early
-		if (calculateWinner(squares) || squares[index]) {
+const Game = () => {
+	const [squares, setSquares] = useState<SquareValue[]>(Array(9).fill(null));
+	const [isXNext, setIsXNext] = useState<boolean>(true);
+
+	const handleClick = (i: number) => {
+		if (calculateWinner(squares) || squares[i]) {
 			return;
 		}
-		// Otherwise, update the square
-		const newSquares = squares.slice();
-		newSquares[index] = isXNext ? "X" : "O";
-		setSquares(newSquares);
-		setIsXNext(!isXNext); // Switch turns
+		const squaresCopy = squares.slice();
+		squaresCopy[i] = isXNext ? "X" : "O";
+		setSquares(squaresCopy);
+		setIsXNext(!isXNext);
 	};
 
-	// Function to render a Square component
-	const renderSquare = (index: number) => {
-		return (
-			<Square value={squares[index]} onClick={() => handleClick(index)} />
-		);
+	const resetGame = () => {
+		setSquares(Array(9).fill(null));
+		setIsXNext(true);
 	};
 
-	// Calculate the winner
+	const renderSquare = (i: number) => (
+		<Square value={squares[i]} onClick={() => handleClick(i)} />
+	);
+
 	const winner = calculateWinner(squares);
 	const status = winner
 		? `Winner: ${winner}`
 		: `Next player: ${isXNext ? "X" : "O"}`;
 
-	// The render method returns the UI for the game
 	return (
 		<div>
 			<div>{status}</div>
@@ -61,12 +59,12 @@ function Game() {
 				{renderSquare(7)}
 				{renderSquare(8)}
 			</div>
+			<button onClick={resetGame}>Reset Game</button>
 		</div>
 	);
-}
+};
 
-// Helper function to calculate the winner
-function calculateWinner(squares: any[]) {
+function calculateWinner(squares: SquareValue[]): SquareValue {
 	const lines = [
 		[0, 1, 2],
 		[3, 4, 5],
