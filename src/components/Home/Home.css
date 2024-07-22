@@ -2,10 +2,16 @@
 	background-color: #000;
 	color: #33ff33;
 	font-family: "Courier New", Courier, monospace;
-	padding: 20px;
+	padding: 10px;
 	border-radius: 10px;
 	box-shadow: 0 0 20px #000;
 	height: 70vh;
+	margin-top: 3%;
+	overflow: auto;
+}
+
+.content-container {
+	overflow: auto;
 }
 
 .terminal-bar {
@@ -74,8 +80,30 @@
 
 .quote-border,
 .greeting-border {
-	border: 2px dashed white;
 	padding: 20px;
 	margin: 20px 0;
 	display: inline-block;
+	font-family: "Courier New", Courier, monospace;
+	font-size: medium;
+	border: 2px dashed whitesmoke;
+}
+
+.board-row {
+	display: flex;
+}
+
+.square {
+	width: 40vb;
+	height: 10vh;
+	background-color: black;
+	border: 1px solid #999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.status {
+	margin-bottom: 10px;
 }

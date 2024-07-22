@@ -3,7 +3,7 @@ import NavLink from "./NavLink";
 import navigationLinks from "../../data/NavData";
 
 const NavBar = () => (
-	<nav className="bg-transparent">
+	<nav className="fixed top-0 w-full z-50">
 		<div className="mx-auto">
 			<div className="relative flex items-center justify-between h-16">
 				{/* Navigation Links */}

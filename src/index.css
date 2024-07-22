@@ -5,10 +5,11 @@
 
 .custom-hover-underline:hover {
 	text-decoration: underline;
-	text-decoration-color: black !important;
+	text-decoration-color: white !important;
 	text-decoration-thickness: 2px;
 }
 
 html {
 	scroll-behavior: smooth;
+	font-family: "Courier New", Courier, monospace;
 }
