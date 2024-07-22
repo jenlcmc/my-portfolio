@@ -1,0 +1,81 @@
+.terminal {
+	background-color: #000;
+	color: #33ff33;
+	font-family: "Courier New", Courier, monospace;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 20px #000;
+	height: 70vh;
+}
+
+.terminal-bar {
+	display: flex;
+	align-items: center;
+	padding: 0 10px;
+	background-color: #333;
+	color: white;
+	border-radius: 10px;
+}
+
+.tabs {
+	display: flex;
+}
+
+.tab {
+	padding: 5px 10px;
+	margin: 0 5px;
+	background-color: #555;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: transform 0.3s, background-color 0.3s;
+	display: flex;
+	align-items: center;
+}
+
+.tab:hover {
+	background-color: #777;
+	transform: scale(1.05);
+}
+
+.tab.active {
+	border: 2px solid #33ff33;
+}
+
+/* Window controls (close, minimize, maximize) */
+.window-controls {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.window-controls.close {
+	background-color: #ff605c;
+}
+
+.window-controls.minimize {
+	background-color: #ffbd44;
+}
+
+.window-controls.maximize {
+	background-color: #00ca56;
+}
+
+.command-prompt {
+	margin-top: 20px;
+	font-family: "Courier New", Courier, monospace;
+}
+
+.command-text {
+	font-weight: bold;
+	font-family: "Courier New", Courier, monospace;
+}
+
+.quote-border,
+.greeting-border {
+	border: 2px dashed white;
+	padding: 20px;
+	margin: 20px 0;
+	display: inline-block;
+}

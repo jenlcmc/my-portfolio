@@ -1,5 +1,5 @@
 //import React from "react";
-import { Link } from "react-router-dom";
+import "../../index.css";
 
 interface NavLinkProps {
 	name: string;
@@ -7,12 +7,12 @@ interface NavLinkProps {
 }
 
 const NavLink = ({ name, href }: NavLinkProps) => (
-	<Link
-		to={href}
-		className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+	<a
+		href={href}
+		className="text-gray-300 hover:text-black px-3 py-2 rounded-md text-sm font-medium custom-hover-underline"
 	>
 		{name}
-	</Link>
+	</a>
 );
 
 export default NavLink;

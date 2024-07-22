@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+.custom-hover-underline:hover {
+	text-decoration: underline;
+	text-decoration-color: black !important;
+	text-decoration-thickness: 2px;
+}
+
+html {
+	scroll-behavior: smooth;
+}
