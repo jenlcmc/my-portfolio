@@ -10,7 +10,11 @@ const About = () => {
 			</h1>
 			<div className="flex-container">
 				<div className="image-container">
-					<img src="path/to/your/image.jpg" alt="Your description" />
+					<img
+						src="/public/vite.svg"
+						alt="placeholder"
+						className="rounded-full"
+					/>
 				</div>
 				<div className="text-container">
 					<div className="mt-4">
