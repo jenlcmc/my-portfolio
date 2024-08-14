@@ -11,9 +11,9 @@ const About = () => {
 			<div className="flex-container">
 				<div className="image-container">
 					<img
-						src="/public/vite.svg"
-						alt="placeholder"
-						className="rounded-full"
+						src="https://raw.githubusercontent.com/jenlcmc/my-portfolio/a86c1d4f54e66886b122d084fdd411a7a68a98b5/public/UT_Draw.png"
+						alt="Drawing of myself"
+						className="profile-image"
 					/>
 				</div>
 				<div className="text-container">
