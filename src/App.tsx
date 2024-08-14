@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import "./index.css";
 
 const App = () => (
-	<div className="min-h-screen flex flex-col bg-gray-900">
+	<div className="min-h-screen flex flex-col ">
 		<Navigation />
 		<main className="flex-grow container mx-auto p-4">
 			<div id="home">

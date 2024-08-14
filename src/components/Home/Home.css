@@ -85,7 +85,6 @@
 	display: inline-block;
 	font-family: "Courier New", Courier, monospace;
 	font-size: medium;
-	border: 2px dashed whitesmoke;
 }
 
 .board-row {

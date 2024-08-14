@@ -37,8 +37,11 @@ const Game = () => {
 	);
 
 	const winner = calculateWinner(squares);
+	const isDraw = squares.every((square) => square !== null) && !winner;
 	const status = winner
 		? `Winner: ${winner}`
+		: isDraw
+		? "Draw Sadge"
 		: `Next player: ${isXNext ? "X" : "O"}`;
 
 	return (

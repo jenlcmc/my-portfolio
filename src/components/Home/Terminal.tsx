@@ -49,7 +49,7 @@ const CommandPrompt = ({ userType }: CommandPromptProps) => {
 	} else if (userType === "user 2") {
 		command = "$ cat Quote.txt";
 	} else if (userType === "user 3") {
-		command = "$ chnod +x TicTacToe.sh && ./TicTacToe.sh";
+		command = "$ chmod +x TicTacToe.sh && ./TicTacToe.sh";
 	} else {
 		command = "$"; // Default or unknown user type
 	}
