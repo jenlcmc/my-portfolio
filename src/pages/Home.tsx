@@ -25,7 +25,7 @@ const Home = () => {
 		switch (activeTab) {
 			case "User 1":
 				return (
-					<div className="flex flex-col justify-center items-center text-1xl">
+					<div className="flex flex-col justify-center items-center text-1xl content-container">
 						<h1 className="greeting-border">{displayGreeting}</h1>
 						<CowSay />
 						<p
@@ -43,7 +43,7 @@ const Home = () => {
 				);
 			case "User 2":
 				return (
-					<div className="flex flex-col justify-center items-center text-2xl m-28">
+					<div className="flex flex-col justify-center items-center text-2xl m-28 content-container">
 						<h1
 							style={{
 								fontSize: "35px",
@@ -60,7 +60,7 @@ const Home = () => {
 				);
 			case "User 3":
 				return (
-					<div className="flex flex-col justify-center items-center text-2xl m-4">
+					<div className="flex flex-col justify-center items-center text-2xl m-4 content-container">
 						<TicTacToe />
 					</div>
 				);

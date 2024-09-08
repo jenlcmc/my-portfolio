@@ -1,0 +1,62 @@
+.retro-button {
+	font-family: "Courier New", Courier, monospace;
+	color: #00ff00;
+	background-color: #000;
+	border: 2px solid #00ff00;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+	transition: all 0.2s ease-in-out;
+}
+
+.retro-button:hover {
+	background-color: #00ff00;
+	color: #000;
+}
+
+.fixed {
+	position: fixed;
+}
+
+.bg-black {
+	background-color: black;
+}
+
+.bg-opacity {
+	opacity: 0.95;
+}
+
+.terminal-modal {
+	background-color: #1e1e1e;
+	border: 1px solid #333;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	width: 50%;
+	height: 50%;
+}
+
+.text-white {
+	color: #00ff00;
+}
+
+.font-mono {
+	font-family: "Courier New", Courier, monospace;
+}
+
+.close-btn {
+	color: white;
+	background-color: #e53e3e;
+	border: none;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	font-size: 18px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.close-btn:hover {
+	background-color: #c53030;
+}

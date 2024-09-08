@@ -8,10 +8,12 @@
 	height: 70vh;
 	margin-top: 3%;
 	overflow: auto;
+	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
 
 .content-container {
 	overflow: auto;
+	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
 
 .terminal-bar {
@@ -71,11 +73,13 @@
 .command-prompt {
 	margin-top: 20px;
 	font-family: "Courier New", Courier, monospace;
+	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
 
 .command-text {
 	font-weight: bold;
 	font-family: "Courier New", Courier, monospace;
+	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
 
 .quote-border,
@@ -85,10 +89,12 @@
 	display: inline-block;
 	font-family: "Courier New", Courier, monospace;
 	font-size: medium;
+	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
 
 .board-row {
 	display: flex;
+	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
 
 .square {
@@ -102,8 +108,10 @@
 	font-size: 30px;
 	font-weight: bold;
 	overflow: auto;
+	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
 
 .status {
 	margin-bottom: 10px;
+	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
