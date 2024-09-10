@@ -1,4 +1,3 @@
-import React from "react";
 import "./Works.css";
 
 interface FolderIconProps {
@@ -8,12 +7,12 @@ interface FolderIconProps {
 	onClick: () => void;
 }
 
-const FolderIcon: React.FC<FolderIconProps> = ({
+const FolderIcon = ({
 	companyName,
 	yearsWorked,
 	jobTitle,
 	onClick,
-}) => {
+}: FolderIconProps) => {
 	return (
 		<div
 			className="cursor-pointer flex items-center space-x-4"
@@ -29,8 +28,8 @@ const FolderIcon: React.FC<FolderIconProps> = ({
 			{/* Folder Icon */}
 			<div>
 				<p className="text-green-500">{companyName}</p>
-				<p className="text-gray-400">{yearsWorked}</p>
-				<p className="text-gray-400">{jobTitle}</p>
+				<p className="text-gray-50">{yearsWorked}</p>
+				<p className="text-gray-50">{jobTitle}</p>
 			</div>
 		</div>
 	);

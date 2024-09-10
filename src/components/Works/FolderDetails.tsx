@@ -1,4 +1,3 @@
-import React from "react";
 import "./Works.css";
 
 interface FolderDetailProps {
@@ -6,10 +5,7 @@ interface FolderDetailProps {
 	onClose: () => void;
 }
 
-const FolderDetail: React.FC<FolderDetailProps> = ({
-	jobDescription,
-	onClose,
-}) => {
+const FolderDetail = ({ jobDescription, onClose }: FolderDetailProps) => {
 	return (
 		<div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity">
 			<div className="terminal-modal p-4 relative w-96 h-80 overflow-auto">

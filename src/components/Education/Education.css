@@ -1,14 +1,20 @@
 /* Education.css */
 .timeline {
 	position: relative;
-	max-width: 600px;
+	max-width: 500px;
 	margin: 0 auto;
 }
 
 .timeline-item {
 	padding: 10px 40px;
 	position: relative;
-	width: 50%;
+	width: 20%; /* Default width for larger screens */
+}
+
+@media (max-width: 768px) {
+	.timeline-item {
+		width: 65%; /* Width for smaller screens */
+	}
 }
 
 .item-header {
