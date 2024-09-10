@@ -31,7 +31,7 @@ const TerminalBar = ({
 				className={`tab ${activeTab === "User 3" ? "active" : ""}`}
 				onClick={() => onTabClick("User 3")}
 			>
-				Tic Tac Toe
+				Mini Games
 			</div>
 		</div>
 	</div>
@@ -49,7 +49,7 @@ const CommandPrompt = ({ userType }: CommandPromptProps) => {
 	} else if (userType === "user 2") {
 		command = "$ cat Quote.txt";
 	} else if (userType === "user 3") {
-		command = "$ chmod +x TicTacToe.sh && ./TicTacToe.sh";
+		command = "$ chmod +x MiniGames.sh && ./MiniGames.sh";
 	} else {
 		command = "$"; // Default or unknown user type
 	}

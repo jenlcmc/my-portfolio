@@ -16,7 +16,7 @@ const FolderDetail = ({ jobDescription, onClose }: FolderDetailProps) => {
 				</div>
 				<div className="space-y-2">
 					{jobDescription.map((desc, index) => (
-						<p key={index} className="text-white font-mono">
+						<p key={index} className="text-white">
 							{desc}
 						</p>
 					))}

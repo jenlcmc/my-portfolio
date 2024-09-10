@@ -115,3 +115,73 @@
 	margin-bottom: 10px;
 	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
+
+.hangman {
+	text-align: center;
+	overflow: hidden;
+}
+
+.word {
+	font-size: 2rem;
+	margin: 20px 0;
+}
+
+.letter {
+	margin: 0 5px;
+}
+
+.keyboard {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.letter-button {
+	margin: 5px;
+	padding: 10px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.hangman {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.hangman-figure {
+	margin: 20px 0;
+}
+
+.figure-container {
+	stroke: #33ff33;
+	stroke-width: 4px;
+	width: 100%;
+	height: auto;
+}
+
+.figure-part {
+	stroke: #33ff33;
+	stroke-width: 4px;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+}
+
+.retro-button {
+	font-family: "Courier New", Courier, monospace;
+	color: #00ff00;
+	background-color: #000;
+	border: 2px solid #00ff00;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+	transition: all 0.2s ease-in-out;
+}
+
+.retro-button:hover {
+	background-color: #00ff00;
+	color: #000;
+}

@@ -4,7 +4,7 @@ import "../components/Home/Home.css";
 import Terminal from "../components/Home/Terminal";
 import { greetings, quotes } from "../components/Home/Data";
 import { useTypingEffect } from "../hooks/TypingEffect";
-import TicTacToe from "../components/Home/MiniGame";
+import Game from "../components/Home/MiniGame";
 
 const Home = () => {
 	// State to track the active tab
@@ -61,7 +61,7 @@ const Home = () => {
 			case "User 3":
 				return (
 					<div className="flex flex-col justify-center items-center text-2xl m-4 content-container">
-						<TicTacToe />
+						<Game />
 					</div>
 				);
 			default:
