@@ -25,7 +25,7 @@ const ProjectItems = ({
 				- Technologies:
 				{technologies.map((tech, index) => (
 					<li key={index} className="inline-block mr-2">
-						{tech}
+						{tech + ","}
 					</li>
 				))}
 			</ul>

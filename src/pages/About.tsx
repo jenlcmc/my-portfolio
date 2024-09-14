@@ -27,24 +27,9 @@ const About = () => {
 				<div className="text-container">
 					<div className="my-1 mr-1">
 						<p className="text-gray-200">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Sed non risus. Suspendisse lectus tortor, dignissim sit
-							amet, adipiscing nec, ultricies sed, dolor. Cras elementum
-							ultrices diam. Maecenas ligula massa, varius a, semper
-							congue, euismod non, mi.
-						</p>
-						<p className="text-gray-200">
-							Proin porttitor, orci nec nonummy molestie, enim est
-							eleifend mi, non fermentum diam nisl sit amet erat. Duis
-							semper. Duis arcu massa, scelerisque vitae, consequat in,
-							pretium a, enim. Pellentesque congue. Ut in risus volutpat
-							libero pharetra tempor. Cras vestibulum bibendum augue.
-							Praesent egestas leo in pede. Praesent blandit odio eu
-							enim. Pellentesque sed dui ut augue blandit sodales.
-							Vestibulum ante ipsum primis in faucibus orci luctus et
-							ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac
-							mauris sed pede pellentesque fermentum. Maecenas adipiscing
-							ante non diam sodales hendrerit.
+							{
+								"> Welcome to my page, I’m Uyen Tran, a CS new grad with a passion for tackling complex problems and bringing creative solutions to life. My studies span courses in Data Science, Algorithms, to AWS, Digital Images Processing, and Software Product Design, providing me with a strong foundation in both theoretical and practical aspects of computer science. As a TA for nearly two years, I helped students master C++ while also serving as a bridge between students and faculty. My experience with a DOE contractor, working on vital national projects, has deepened my interest in real-world applications of technology. I’m always looking for new challenges that push the boundaries of what tech can do."
+							}
 						</p>
 					</div>
 				</div>

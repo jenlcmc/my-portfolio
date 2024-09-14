@@ -1,22 +1,22 @@
 // Definition of greetings and quotes
 const greetings = [
-	"Hello, it is me, Jane", // English
-	"Hola, soy Jane", // Spanish
-	"Bonjour, c'est moi Jane", // French
-	"Ciao, sono Jane", // Italian
-	"こんにちは、Janeです", // Japanese
-	"안녕하세요, Jane입니다", // Korean
-	"Привет, это я Jane", // Russian
-	"你好，是我 Jane", // Chinese
-	"Xin chào, tôi là Jane", // Vietnamese
-	'console.log("Hello, it is me, Jane"); // JavaScript',
-	'print("Hello, it is me, Jane") # Python',
-	'System.out.println("Hello, it is me, Jane"); // Java',
-	'echo "Hello, it is me, Jane"; // PHP',
-	'fmt.Println("Hello, it is me, Jane") // Go',
-	'Console.WriteLine("Hello, it is me, Jane"); // C#',
-	'cout << "Hello, it is me, Jane"; // C++',
-	'printf("Hello, it is me, Jane"); // C',
+	"Hello, it is me, Uyen", // English
+	"Hola, soy Uyen", // Spanish
+	"Bonjour, c'est moi Uyen", // French
+	"Ciao, sono Uyen", // Italian
+	"こんにちは、Uyenです", // Japanese
+	"안녕하세요, Uyen입니다", // Korean
+	"Привет, это я Uyen", // Russian
+	"你好，是我 Uyen", // Chinese
+	"Xin chào, tôi là Uyen", // Vietnamese
+	'console.log("Hello, it is me, Uyen"); // JavaScript',
+	'print("Hello, it is me, Uyen") # Python',
+	'System.out.println("Hello, it is me, Uyen"); // Java',
+	'echo "Hello, it is me, Uyen"; // PHP',
+	'fmt.Println("Hello, it is me, Uyen") // Go',
+	'Console.WriteLine("Hello, it is me, Uyen"); // C#',
+	'cout << "Hello, it is me, Uyen"; // C++',
+	'printf("Hello, it is me, Uyen"); // C',
 ];
 
 const quotes = [

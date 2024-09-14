@@ -2,6 +2,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .text-container {
@@ -24,6 +25,22 @@
 	min-width: 350px;
 	min-height: 350px;
 	object-fit: cover;
+}
+
+@media (max-width: 768px) {
+	.flex-container {
+		flex-direction: column; /* Stack items vertically */
+		text-align: center; /* Center text */
+	}
+
+	.text-container {
+		padding-left: 0; /* Remove left padding */
+		padding-top: 20px; /* Add top padding for spacing */
+	}
+
+	.image-container img {
+		margin-bottom: 20px; /* Add bottom margin for spacing */
+	}
 }
 
 .retro-button {
