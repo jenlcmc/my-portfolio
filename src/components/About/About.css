@@ -30,7 +30,7 @@
 @media (max-width: 768px) {
 	.flex-container {
 		flex-direction: column; /* Stack items vertically */
-		text-align: center; /* Center text */
+		text-align: center;
 	}
 
 	.text-container {
