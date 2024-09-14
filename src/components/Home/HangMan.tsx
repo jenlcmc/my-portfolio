@@ -155,7 +155,11 @@ const Hangman = () => {
 
 			{isGameOver && <p>You lost! The word was {word}</p>}
 			{isGameWon && <p>Congratulations! You won!</p>}
-			<button onClick={resetGame}>Reset Game</button>
+			<div className="button-container">
+				<button className="retro-button" onClick={resetGame}>
+					Reset Game
+				</button>
+			</div>
 		</div>
 	);
 };
