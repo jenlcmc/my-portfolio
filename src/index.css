@@ -9,6 +9,20 @@
 	text-decoration-thickness: 2px;
 }
 
+.loader {
+	border-top-color: #00ff00;
+	animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 html {
 	scroll-behavior: smooth;
 	font-family: "Courier New", Courier, monospace;
