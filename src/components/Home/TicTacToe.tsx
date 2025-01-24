@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Define types for the square values and the square props
 type SquareValue = "X" | "O" | null;
@@ -41,14 +41,63 @@ const TicTacToe = () => {
 	const [squares, setSquares] = useState<SquareValue[]>(Array(9).fill(null));
 	const [isXNext, setIsXNext] = useState<boolean>(true);
 
+	useEffect(() => {
+		if (!isXNext) {
+			const timer = setTimeout(() => {
+				makeCpuMove();
+			}, 500);
+			return () => clearTimeout(timer);
+		}
+	}, [isXNext]);
+
 	const handleClick = (i: number) => {
 		if (calculateWinner(squares) || squares[i]) {
 			return;
 		}
 		const squaresCopy = squares.slice();
-		squaresCopy[i] = isXNext ? "X" : "O";
+		squaresCopy[i] = "X";
 		setSquares(squaresCopy);
-		setIsXNext(!isXNext);
+		setIsXNext(false);
+	};
+
+	const makeCpuMove = () => {
+		const emptySquares = squares
+			.map((square, index) => (square === null ? index : null))
+			.filter((index) => index !== null) as number[];
+
+		if (emptySquares.length === 0) {
+			return;
+		}
+
+		// Check if CPU can win
+		for (let i = 0; i < emptySquares.length; i++) {
+			const squaresCopy = squares.slice();
+			squaresCopy[emptySquares[i]] = "O";
+			if (calculateWinner(squaresCopy) === "O") {
+				setSquares(squaresCopy);
+				setIsXNext(true);
+				return;
+			}
+		}
+
+		// Check if CPU needs to block player
+		for (let i = 0; i < emptySquares.length; i++) {
+			const squaresCopy = squares.slice();
+			squaresCopy[emptySquares[i]] = "X";
+			if (calculateWinner(squaresCopy) === "X") {
+				squaresCopy[emptySquares[i]] = "O";
+				setSquares(squaresCopy);
+				setIsXNext(true);
+				return;
+			}
+		}
+
+		// Make a random move
+		const randomIndex = Math.floor(Math.random() * emptySquares.length);
+		const squaresCopy = squares.slice();
+		squaresCopy[emptySquares[randomIndex]] = "O";
+		setSquares(squaresCopy);
+		setIsXNext(true);
 	};
 
 	const resetGame = () => {
