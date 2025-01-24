@@ -6,8 +6,6 @@ const LinkedInIconURL =
 	"https://icons.iconarchive.com/icons/arturo-wibawa/akar/256/linkedin-box-icon.png";
 const GitHubIconURL =
 	"https://icons.iconarchive.com/icons/simpleicons-team/simple/256/github-icon.png";
-const ResumeIconURL =
-	"https://icons.iconarchive.com/icons/arturo-wibawa/akar/256/paper-icon.png";
 
 const About = () => {
 	return (
@@ -29,6 +27,11 @@ const About = () => {
 						<p className="text-gray-200">
 							{
 								"> Welcome to my page, I’m Uyen Tran, a recent CS new grad and currently MSCS student at UNLV with a passion for tackling complex problems and bringing creative solutions to life. My studies span courses in Data Science, Algorithms, Database, Machine Learning to AWS, Digital Images Processing, and Software Product Design, providing me with a strong foundation in both theoretical and practical aspects of computer science. As a TA for nearly two years, I helped students master C++ while also serving as a bridge between students and faculty. My experience with a DOE contractor, working on vital national projects, has deepened my interest in real-world applications of technology. I’m always looking for new challenges that push the boundaries of what tech can do."
+							}
+						</p>
+						<p className="mt-10 text-gray-200">
+							{
+								"> If you want to contact me, you can do it by go to my Github page and make an issue or pull request in any of the public repo. You can also message me on Linkedin"
 							}
 						</p>
 					</div>
@@ -56,18 +59,6 @@ const About = () => {
 					<img
 						src={GitHubIconURL}
 						alt="GitHub"
-						className="w-8 h-8 filter invert"
-					/>
-				</a>
-				<a
-					href="public/Resume_25.pdf"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="hover:opacity-80 retro-button"
-				>
-					<img
-						src={ResumeIconURL}
-						alt="Resume"
 						className="w-8 h-8 filter invert"
 					/>
 				</a>
