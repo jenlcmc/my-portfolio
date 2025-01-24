@@ -16,7 +16,7 @@ const About = () => {
 			<div className="flex-container">
 				<div className="image-container">
 					<img
-						src="/Draw.png"
+						src="https://raw.githubusercontent.com/jenlcmc/my-portfolio/a86c1d4f54e66886b122d084fdd411a7a68a98b5/public/UT_Draw.png"
 						alt="Drawing of myself"
 						className="profile-image"
 					/>
@@ -29,7 +29,7 @@ const About = () => {
 								"> Welcome to my page, I’m Uyen Tran, a recent CS new grad and currently MSCS student at UNLV with a passion for tackling complex problems and bringing creative solutions to life. My studies span courses in Data Science, Algorithms, Database, Machine Learning to AWS, Digital Images Processing, and Software Product Design, providing me with a strong foundation in both theoretical and practical aspects of computer science. As a TA for nearly two years, I helped students master C++ while also serving as a bridge between students and faculty. My experience with a DOE contractor, working on vital national projects, has deepened my interest in real-world applications of technology. I’m always looking for new challenges that push the boundaries of what tech can do."
 							}
 						</p>
-						<p className="mt-10 text-gray-200">
+						<p className="mt-10 mb-10 text-gray-200">
 							{
 								"> If you want to contact me, you can do it by go to my Github page and make an issue or pull request in any of the public repo. You can also message me on Linkedin"
 							}
