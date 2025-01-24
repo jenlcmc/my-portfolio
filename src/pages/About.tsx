@@ -18,7 +18,7 @@ const About = () => {
 			<div className="flex-container">
 				<div className="image-container">
 					<img
-						src="/my-portfolio/Draw.png"
+						src="/Draw.png"
 						alt="Drawing of myself"
 						className="profile-image"
 					/>
