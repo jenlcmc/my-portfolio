@@ -18,7 +18,7 @@ const About = () => {
 			<div className="flex-container">
 				<div className="image-container">
 					<img
-						src="https://raw.githubusercontent.com/jenlcmc/my-portfolio/a86c1d4f54e66886b122d084fdd411a7a68a98b5/public/UT_Draw.png"
+						src="public/UT_Draw.png"
 						alt="Drawing of myself"
 						className="profile-image"
 					/>
@@ -28,7 +28,7 @@ const About = () => {
 					<div className="my-1 mr-1">
 						<p className="text-gray-200">
 							{
-								"> Welcome to my page, I’m Uyen Tran, a CS new grad with a passion for tackling complex problems and bringing creative solutions to life. My studies span courses in Data Science, Algorithms, to AWS, Digital Images Processing, and Software Product Design, providing me with a strong foundation in both theoretical and practical aspects of computer science. As a TA for nearly two years, I helped students master C++ while also serving as a bridge between students and faculty. My experience with a DOE contractor, working on vital national projects, has deepened my interest in real-world applications of technology. I’m always looking for new challenges that push the boundaries of what tech can do."
+								"> Welcome to my page, I’m Uyen Tran, a recent CS new grad and currently MSCS student at UNLV with a passion for tackling complex problems and bringing creative solutions to life. My studies span courses in Data Science, Algorithms, Database, Machine Learning to AWS, Digital Images Processing, and Software Product Design, providing me with a strong foundation in both theoretical and practical aspects of computer science. As a TA for nearly two years, I helped students master C++ while also serving as a bridge between students and faculty. My experience with a DOE contractor, working on vital national projects, has deepened my interest in real-world applications of technology. I’m always looking for new challenges that push the boundaries of what tech can do."
 							}
 						</p>
 					</div>
@@ -60,7 +60,7 @@ const About = () => {
 					/>
 				</a>
 				<a
-					href="https://drive.google.com/file/d/1RpE-dPwDJj5cI9VhunMk05D-ak9JcRnZ/view?usp=sharing"
+					href="public/Resume_25.pdf"
 					target="_blank"
 					rel="noopener noreferrer"
 					className="hover:opacity-80 retro-button"
