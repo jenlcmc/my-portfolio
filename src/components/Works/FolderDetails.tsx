@@ -14,7 +14,7 @@ const FolderDetail = ({ jobDescription, onClose }: FolderDetailProps) => {
 						&times;
 					</button>
 				</div>
-				<div className="space-y-2">
+				<div className="space-y-2 job-description-container">
 					{jobDescription.map((desc, index) => (
 						<p key={index} className="text-white">
 							{desc}

@@ -39,6 +39,10 @@
 	color: #00ff00;
 }
 
+.job-description-container p:last-child {
+	color: orange;
+}
+
 .font-mono {
 	font-family: "Courier New", Courier, monospace;
 }

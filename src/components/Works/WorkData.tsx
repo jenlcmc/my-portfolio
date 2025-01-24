@@ -1,12 +1,23 @@
 const workExperienceData = [
 	{
+		companyName: "University of Nevada, Las Vegas",
+		yearsWorked: "Jan 2025 - Current",
+		jobTitle: "Computer Science Graduate Assistant ",
+		jobDescription: [
+			"• Worked approximately 20 hours per week while attending school full-time",
+			"• Selected for a competitive assistantship to support the Computer Science department’s academic mission. Currently assisting in teaching and grading for the ”Introduction to Python for Data Science” course.",
+			"• Responsibilities include grading assignments and quizzes, assisting students with understanding programming concepts, and supporting the professor in teaching object-oriented programming and data science topics.",
+			"> Technologies: Python, VSCode, Jupyter Notebook, Python Data Science Libraries",
+		],
+	},
+	{
 		companyName: "Misison Support and Test Services",
 		yearsWorked: "August 2023 - May 2024",
 		jobTitle: "Casual Employee",
 		jobDescription: [
 			"• Worked approximately 20 hours per week while attending school full-time",
-			"• Modernized multiple internal websites with Angular and Typescript, integrating automated data validation and customizable interfaces, boosting accuracy and usability for NNSA support",
-			"• Collaborated directly with scientists and engineers throughout the design, development, and testing phases, incorporating feedback to effectively introduce new features, significantly boosting the platform’s responsiveness and user engagement",
+			"• Modernized internal websites using Angular and Typescript, integrating automated data validation and customizable interfaces, improving data accuracy by 30% and reducing user input errors by 20%.",
+			"• Collaborated with scientists and engineers throughout design, development, and testing phases, incorporating feedback to introduce new features, significantly boosting platform responsiveness and increasing user engagement by 20%.",
 			"> Technologies: Angular, Typescript, HTML, CSS, JavaScript, Typescript, Azure Devops, Agile",
 		],
 	},
@@ -16,8 +27,8 @@ const workExperienceData = [
 		jobTitle: "Science & Engineering Summer Intern",
 		jobDescription: [
 			"• Worked full time / 40 hours per week",
-			"• Design the first version of a field sample simulation tool to reduce data entry time, auto calculate values, and improve the experience for Nuclear Emergency Responders during Federal Radiological Monitoring and Assessment Center (FRMAC) training events",
-			"• Enhancement of simulation capability to support Nuclear Emergency Response training across the NNSA complex with new designs and features with Angualr and Typescript",
+			"• Designed a field sample simulation tool, reducing data entry time by 40% and auto-calculating values to streamline training exercises for Nuclear Emergency Responders during Federal Radiological Monitoring and Assessment Center (FRMAC) training events.",
+			"• Enhanced simulation capabilities to support Nuclear Emergency Response training across the NNSA complex with new designs and features using Angular and Typescript.",
 			"> Technologies / Tools: Angular, Typescript, HTML, CSS, JavaScript, Typescript, Azure Devops, Agile",
 		],
 	},
@@ -27,8 +38,8 @@ const workExperienceData = [
 		jobTitle: "Computer Science I Teaching Assistant",
 		jobDescription: [
 			"• Worked approximately 10 hours per week while attending school full-time",
-			"• Hold office hours for students who need help with C++ homework and grade students’ assignments",
-			"• Serve as a communication liaison between the students and professor",
+			"• Guided during office hours to support over 30 students weekly in mastering C++ concepts and completing assignments, leading to an average grade improvement of one letter.",
+			"• Graded assignments and delivered constructive feedback, maintaining a grading turnaround time of less than 48 hours.",
 			"> Technologies / Tools: C++, Visual Studio Code, Visual Studio, gdb, lldb",
 		],
 	},

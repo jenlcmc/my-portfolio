@@ -48,4 +48,15 @@ const TimeLineData = [
 	},
 ];
 
-export { TimeLineData };
+const TimelineDataGrad = [
+	{
+		year: "Year 1: Spring 2025 (Current)",
+		courses: [
+			"CS 622: Introduction to Machine Learning",
+			"CS 657: Database Management Systems",
+			"CS 677: Analysis of Algorithms",
+		],
+	},
+];
+
+export { TimeLineData, TimelineDataGrad };
