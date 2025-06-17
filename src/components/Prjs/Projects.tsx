@@ -5,7 +5,7 @@ import "./Prj.css";
 const Project = () => {
 	return (
 		<div className="flex flex-col items-center justify-center m-10">
-			<h1 className="text-3xl text-green-500 custom-hover-underline">
+			<h1 className="text-3xl text-terminal-accent custom-hover-underline">
 				Projects
 			</h1>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">

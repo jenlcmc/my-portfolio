@@ -25,16 +25,12 @@ const Home = () => {
 		switch (activeTab) {
 			case "User 1":
 				return (
-					<div className="flex flex-col justify-center items-center text-1xl content-container">
-						<h1 className="greeting-border">{displayGreeting}</h1>
+					<div className="flex flex-col justify-center items-center content-container">
+						<h1 className="greeting-border text-lg md:text-xl lg:text-2xl leading-relaxed">
+							{displayGreeting}
+						</h1>
 						<CowSay />
-						<p
-							style={{
-								fontSize: "35px",
-								justifyContent: "center",
-								justifyItems: "center",
-							}}
-						>
+						<p className="text-base md:text-lg lg:text-xl leading-relaxed text-center max-w-4xl mt-8 text-terminal-text">
 							Welcome to my page, fellow adventurer! Step into a realm
 							where code meets creativity. Check out my latest projects
 							and let's level up together!
@@ -43,24 +39,20 @@ const Home = () => {
 				);
 			case "User 2":
 				return (
-					<div className="flex flex-col justify-center items-center text-2xl m-28 content-container">
-						<h1
-							style={{
-								fontSize: "35px",
-								justifyContent: "center",
-								justifyItems: "center",
-							}}
-						>
+					<div className="flex flex-col justify-center items-center content-container p-8">
+						<h1 className="text-xl md:text-2xl lg:text-3xl text-center mb-8 text-terminal-accent font-semibold">
 							Random Quote from Video Games that I love
 						</h1>
-						<div className="quote-border">
-							<h1 style={{ fontSize: "30px" }}>{displayQuote}</h1>
+						<div className="quote-border max-w-4xl">
+							<h1 className="text-lg md:text-xl lg:text-2xl leading-relaxed">
+								{displayQuote}
+							</h1>
 						</div>
 					</div>
 				);
 			case "User 3":
 				return (
-					<div className="flex flex-col justify-center items-center text-2xl m-4 content-container">
+					<div className="w-full h-full flex justify-center items-start pt-8">
 						<Game />
 					</div>
 				);
@@ -70,7 +62,10 @@ const Home = () => {
 	};
 
 	return (
-		<div id="home" className="terminal">
+		<div
+			id="home"
+			className={`terminal ${activeTab === "User 3" ? "game-active" : ""}`}
+		>
 			<Terminal activeTab={activeTab} onTabClick={handleTabClick} />
 			<div className="content-container">{renderContent()}</div>
 		</div>

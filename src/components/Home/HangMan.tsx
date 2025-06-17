@@ -57,63 +57,116 @@ const Keyboard = ({ onGuess = () => {}, disabled = false }: HangmanProps) => (
 
 const HangmanFigure = ({ wrongGuesses = 0 }: HangmanProps) => {
 	const parts = [
-		<circle key="head" cx="140" cy="70" r="20" className="figure-part" />,
+		<circle
+			key="head"
+			cx="160"
+			cy="100"
+			r="20"
+			stroke="#00d9ff"
+			strokeWidth="3"
+			fill="none"
+		/>,
 		<line
 			key="body"
-			x1="140"
-			y1="90"
-			x2="140"
-			y2="150"
-			className="figure-part"
+			x1="160"
+			y1="120"
+			x2="160"
+			y2="180"
+			stroke="#00d9ff"
+			strokeWidth="3"
 		/>,
 		<line
 			key="left-arm"
-			x1="140"
-			y1="120"
-			x2="110"
-			y2="100"
-			className="figure-part"
+			x1="160"
+			y1="150"
+			x2="130"
+			y2="130"
+			stroke="#00d9ff"
+			strokeWidth="3"
 		/>,
 		<line
 			key="right-arm"
-			x1="140"
-			y1="120"
-			x2="170"
-			y2="100"
-			className="figure-part"
+			x1="160"
+			y1="150"
+			x2="190"
+			y2="130"
+			stroke="#00d9ff"
+			strokeWidth="3"
 		/>,
 		<line
 			key="left-leg"
-			x1="140"
-			y1="150"
-			x2="120"
-			y2="180"
-			className="figure-part"
+			x1="160"
+			y1="180"
+			x2="140"
+			y2="210"
+			stroke="#00d9ff"
+			strokeWidth="3"
 		/>,
 		<line
 			key="right-leg"
-			x1="140"
-			y1="150"
-			x2="160"
-			y2="180"
-			className="figure-part"
+			x1="160"
+			y1="180"
+			x2="180"
+			y2="210"
+			stroke="#00d9ff"
+			strokeWidth="3"
 		/>,
 	];
 
 	return (
-		<div className="hangman">
-			<svg height="250" width="200" className="figure-container">
-				<line x1="60" y1="20" x2="140" y2="20" className="figure-part" />
-				<line x1="140" y1="20" x2="140" y2="50" className="figure-part" />
-				<line x1="60" y1="20" x2="60" y2="230" className="figure-part" />
-				<line x1="20" y1="230" x2="100" y2="230" className="figure-part" />
+		<div className="hangman-figure">
+			<svg
+				height="300"
+				width="240"
+				className="figure-container"
+				viewBox="0 0 240 300"
+				preserveAspectRatio="xMidYMid meet"
+			>
+				{/* Gallows */}
+				<line
+					x1="80"
+					y1="50"
+					x2="160"
+					y2="50"
+					stroke="#00d9ff"
+					strokeWidth="3"
+				/>
+				<line
+					x1="160"
+					y1="50"
+					x2="160"
+					y2="80"
+					stroke="#00d9ff"
+					strokeWidth="3"
+				/>
+				<line
+					x1="80"
+					y1="50"
+					x2="80"
+					y2="260"
+					stroke="#00d9ff"
+					strokeWidth="3"
+				/>
+				<line
+					x1="40"
+					y1="260"
+					x2="120"
+					y2="260"
+					stroke="#00d9ff"
+					strokeWidth="3"
+				/>
+				{/* Body parts based on wrong guesses */}
 				{parts.slice(0, wrongGuesses)}
 			</svg>
 		</div>
 	);
 };
 
-const Hangman = () => {
+const Hangman = ({
+	onReturnToSelection,
+}: {
+	onReturnToSelection?: () => void;
+}) => {
 	const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
 
 	const [word, setWord] = useState(getRandomWord());
@@ -159,6 +212,11 @@ const Hangman = () => {
 				<button className="retro-button" onClick={resetGame}>
 					Reset Game
 				</button>
+				{onReturnToSelection && (
+					<button className="retro-button" onClick={onReturnToSelection}>
+						Return to Game Selection
+					</button>
+				)}
 			</div>
 		</div>
 	);

@@ -1,196 +1,551 @@
+/* Modern Terminal Styling */
 .terminal {
-	background-color: #000;
-	color: #33ff33;
-	font-family: "Courier New", Courier, monospace;
-	padding: 10px;
-	border-radius: 10px;
-	box-shadow: 0 0 20px #000;
-	height: 70vh;
-	margin-top: 3%;
-	overflow: auto;
-	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+	background: linear-gradient(
+		135deg,
+		rgba(26, 27, 35, 0.95) 0%,
+		rgba(16, 17, 23, 0.98) 100%
+	);
+	backdrop-filter: blur(20px);
+	color: #e2e8f0;
+	font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+	padding: 24px;
+	border-radius: 16px;
+	border: 1px solid rgba(45, 46, 63, 0.5);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 217, 255, 0.1),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	height: 80vh;
+	margin-top: 2rem;
+	overflow: hidden;
+	position: relative;
+	transition: all 0.3s ease;
+}
+
+.terminal:hover {
+	border-color: rgba(0, 217, 255, 0.3);
+	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 217, 255, 0.15),
+		inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .content-container {
-	overflow: auto;
-	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+	overflow-y: auto;
+	height: calc(100% - 80px);
+	padding: 20px 8px 40px 8px;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(0, 217, 255, 0.3) transparent;
+	min-height: 500px;
+}
+
+.content-container::-webkit-scrollbar {
+	width: 6px;
+}
+
+.content-container::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.content-container::-webkit-scrollbar-thumb {
+	background: rgba(0, 217, 255, 0.3);
+	border-radius: 3px;
 }
 
 .terminal-bar {
 	display: flex;
 	align-items: center;
-	padding: 0 10px;
-	background-color: #333;
-	color: white;
-	border-radius: 10px;
+	justify-content: space-between;
+	padding: 16px 20px;
+	background: linear-gradient(
+		135deg,
+		rgba(45, 46, 63, 0.8) 0%,
+		rgba(35, 36, 47, 0.9) 100%
+	);
+	backdrop-filter: blur(10px);
+	border-radius: 16px 16px 0 0;
+	border-bottom: 1px solid rgba(45, 46, 63, 0.5);
+	margin: -24px -24px 20px -24px;
+}
+
+.window-controls-group {
+	display: flex;
+	align-items: center;
+	gap: 8px;
 }
 
 .tabs {
 	display: flex;
+	gap: 8px;
+	flex: 1;
+	justify-content: center;
 }
 
 .tab {
-	padding: 5px 10px;
-	margin: 0 5px;
-	background-color: #555;
-	border-radius: 5px;
+	padding: 8px 16px;
+	background: rgba(26, 27, 35, 0.6);
+	border: 1px solid rgba(45, 46, 63, 0.5);
+	border-radius: 8px;
 	cursor: pointer;
-	transition: transform 0.3s, background-color 0.3s;
-	display: flex;
-	align-items: center;
+	transition: all 0.3s ease;
+	font-size: 14px;
+	font-weight: 500;
+	color: #e2e8f0;
+	position: relative;
+	overflow: hidden;
+}
+
+.tab::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(0, 217, 255, 0.1),
+		transparent
+	);
+	transition: left 0.5s ease;
+}
+
+.tab:hover::before {
+	left: 100%;
 }
 
 .tab:hover {
-	background-color: #777;
-	transform: scale(1.05);
+	background: rgba(45, 46, 63, 0.8);
+	border-color: rgba(0, 217, 255, 0.5);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 217, 255, 0.2);
 }
 
 .tab.active {
-	border: 2px solid #33ff33;
+	background: linear-gradient(
+		135deg,
+		rgba(0, 217, 255, 0.1) 0%,
+		rgba(183, 148, 246, 0.1) 100%
+	);
+	border-color: #00d9ff;
+	box-shadow: 0 0 20px rgba(0, 217, 255, 0.3),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Window controls (close, minimize, maximize) */
 .window-controls {
-	width: 12px;
-	height: 12px;
+	width: 14px;
+	height: 14px;
 	border-radius: 50%;
 	display: inline-block;
-	margin-right: 5px;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.window-controls:hover {
+	transform: scale(1.1);
+	box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .window-controls.close {
-	background-color: #ff605c;
+	background: linear-gradient(135deg, #ff6b6b, #ff5252);
 }
 
 .window-controls.minimize {
-	background-color: #ffbd44;
+	background: linear-gradient(135deg, #ffd93d, #ffc107);
 }
 
 .window-controls.maximize {
-	background-color: #00ca56;
+	background: linear-gradient(135deg, #6bcf7f, #4caf50);
 }
 
 .command-prompt {
-	margin-top: 20px;
-	font-family: "Courier New", Courier, monospace;
-	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+	margin-top: 24px;
+	font-family: "JetBrains Mono", monospace;
+	position: relative;
 }
 
 .command-text {
-	font-weight: bold;
-	font-family: "Courier New", Courier, monospace;
-	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+	font-weight: 600;
+	font-family: "JetBrains Mono", monospace;
+	color: #00d9ff;
+	text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+	animation: glow 2s ease-in-out infinite alternate;
 }
 
 .quote-border,
 .greeting-border {
-	padding: 20px;
-	margin: 20px 0;
-	display: inline-block;
-	font-family: "Courier New", Courier, monospace;
-	font-size: medium;
-	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+	padding: 24px;
+	margin: 24px 0;
+	background: rgba(26, 27, 35, 0.4);
+	border: 1px solid rgba(45, 46, 63, 0.5);
+	border-radius: 12px;
+	border-left: 4px solid #00d9ff;
+	font-family: "JetBrains Mono", monospace;
+	font-size: 16px;
+	line-height: 1.6;
+	position: relative;
+	overflow: hidden;
 }
 
+.quote-border::before,
+.greeting-border::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, #00d9ff, transparent);
+	animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+	0%,
+	100% {
+		transform: translateX(-100%);
+	}
+	50% {
+		transform: translateX(100%);
+	}
+}
+
+/* Game styling updates */
 .game-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	min-height: 50vh;
-	padding: 20px;
+	justify-content: flex-start;
+	width: 100%;
+	padding: 16px;
+	background: transparent;
+	border: none;
+	overflow: visible;
 }
+
+/* Remove the separate scrollbar styles for game-container */
 
 .board-row {
 	display: flex;
-	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+	gap: 6px;
+	margin-bottom: 6px;
 }
 
 .square {
-	width: 13vb;
-	height: 13vh;
-	background-color: black;
-	border: 1px solid #999;
+	width: 90px;
+	height: 90px;
+	background: rgba(26, 27, 35, 0.8);
+	border: 2px solid rgba(45, 46, 63, 0.8);
+	border-radius: 12px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 30px;
+	font-size: 36px;
 	font-weight: bold;
-	overflow: auto;
-	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+	cursor: pointer;
+	transition: all 0.2s ease;
+	color: #e2e8f0;
+}
+
+.square:hover {
+	border-color: #00d9ff;
+	background: rgba(0, 217, 255, 0.1);
+	transform: scale(1.05);
 }
 
 .status {
-	margin-bottom: 10px;
-	text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+	margin-bottom: 16px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #00d9ff;
+	text-align: center;
 }
 
+/* Mobile responsive game sizing */
+@media (max-width: 640px) {
+	.square {
+		width: 70px;
+		height: 70px;
+		font-size: 28px;
+	}
+
+	.board-row {
+		gap: 4px;
+		margin-bottom: 4px;
+	}
+
+	.status {
+		font-size: 16px;
+		margin-bottom: 12px;
+	}
+
+	.game-container {
+		padding: 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.square {
+		width: 55px;
+		height: 55px;
+		font-size: 20px;
+	}
+
+	.game-container {
+		padding: 8px;
+	}
+}
+
+/* Hangman game updates */
 .hangman {
 	text-align: center;
-	overflow: hidden;
-}
-
-.word {
-	font-size: 2rem;
-	margin: 20px 0;
-}
-
-.letter {
-	margin: 0 5px;
-}
-
-.keyboard {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
-.letter-button {
-	margin: 5px;
-	padding: 10px;
-	font-size: 1rem;
-	cursor: pointer;
-}
-
-.hangman {
+	padding: 24px 16px 16px 16px;
+	width: 100%;
+	max-width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow: visible;
+	gap: 12px;
+	min-height: 100%;
+	justify-content: flex-start;
+	margin-top: 16px;
+}
+
+/* Remove the separate scrollbar styles for hangman */
+
+.word {
+	font-size: 1.8rem;
+	margin: 12px 0;
+	letter-spacing: 6px;
+	color: #e2e8f0;
+	text-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+}
+
+.letter {
+	margin: 0 6px;
+	padding: 8px 12px;
+	background: rgba(26, 27, 35, 0.6);
+	border: 1px solid rgba(45, 46, 63, 0.5);
+	border-radius: 8px;
+	display: inline-block;
+	min-width: 40px;
+	font-size: 1.5rem;
+}
+
+.keyboard {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+	gap: 6px;
+	max-width: 500px;
+	margin: 12px auto;
+	width: 100%;
+}
+
+.letter-button {
+	padding: 10px 8px;
+	font-size: 15px;
+	font-weight: 600;
+	background: rgba(26, 27, 35, 0.8);
+	border: 1px solid rgba(45, 46, 63, 0.5);
+	border-radius: 8px;
+	color: #e2e8f0;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	min-height: 42px;
+}
+
+.letter-button:hover {
+	background: rgba(0, 217, 255, 0.1);
+	border-color: #00d9ff;
+	transform: translateY(-2px);
+}
+
+.letter-button:disabled {
+	background: rgba(45, 46, 63, 0.5);
+	color: #718096;
+	cursor: not-allowed;
+	transform: none;
 }
 
 .hangman-figure {
-	margin: 20px 0;
+	margin: 16px 0 12px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 300px;
+	width: 100%;
+	padding: 8px 0;
 }
 
 .figure-container {
-	stroke: #33ff33;
-	stroke-width: 4px;
-	width: 100%;
-	height: auto;
+	stroke: #00d9ff;
+	stroke-width: 3px;
+	width: 240px;
+	height: 300px;
+	filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.3));
+	margin: 0 auto;
+	background: transparent;
+	display: block;
+	flex-shrink: 0;
 }
 
 .figure-part {
-	stroke: #33ff33;
-	stroke-width: 4px;
+	stroke: #00d9ff;
+	stroke-width: 3px;
+	stroke-linecap: round;
+	fill: none;
+}
+
+/* Mobile responsive hangman sizing */
+@media (max-width: 640px) {
+	.word {
+		font-size: 1.5rem;
+		letter-spacing: 6px;
+		margin: 12px 0;
+	}
+
+	.letter {
+		padding: 6px 8px;
+		min-width: 35px;
+		font-size: 1.2rem;
+		margin: 0 4px;
+	}
+
+	.keyboard {
+		grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+		gap: 6px;
+		max-width: 400px;
+		margin: 12px auto;
+	}
+
+	.letter-button {
+		padding: 10px 6px;
+		font-size: 14px;
+		min-height: 40px;
+	}
+
+	.figure-container {
+		width: 180px;
+		height: 225px;
+	}
+
+	.hangman {
+		padding: 20px 12px 12px 12px;
+	}
+
+	.hangman-figure {
+		min-height: 240px;
+		margin: 12px 0 8px 0;
+	}
+}
+
+@media (max-width: 480px) {
+	.word {
+		font-size: 1.2rem;
+		letter-spacing: 4px;
+	}
+
+	.letter {
+		font-size: 1rem;
+		min-width: 30px;
+		margin: 0 2px;
+	}
+
+	.keyboard {
+		grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+		max-width: 320px;
+	}
+
+	.letter-button {
+		padding: 8px 4px;
+		font-size: 12px;
+		min-height: 35px;
+	}
+
+	.figure-container {
+		width: 140px;
+		height: 175px;
+	}
+}
+
+.figure-part {
+	stroke: #00d9ff;
+	stroke-width: 3px;
+	stroke-linecap: round;
 }
 
 .button-container {
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin: 5px auto 8px auto;
+	padding: 1px 0;
+	width: 100%;
+	flex-shrink: 0;
 }
 
 .retro-button {
-	font-family: "Courier New", Courier, monospace;
-	color: #00ff00;
-	background-color: #000;
-	border: 2px solid #00ff00;
-	padding: 10px 20px;
+	font-family: "JetBrains Mono", monospace;
+	color: #e2e8f0;
+	background: linear-gradient(
+		135deg,
+		rgba(0, 217, 255, 0.1) 0%,
+		rgba(183, 148, 246, 0.1) 100%
+	);
+	border: 2px solid #00d9ff;
+	padding: 12px 24px;
+	border-radius: 8px;
 	text-transform: uppercase;
-	box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-	transition: all 0.2s ease-in-out;
+	font-weight: 600;
+	letter-spacing: 1px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.retro-button::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(0, 217, 255, 0.2),
+		transparent
+	);
+	transition: left 0.5s ease;
+}
+
+.retro-button:hover::before {
+	left: 100%;
 }
 
 .retro-button:hover {
-	background-color: #00ff00;
-	color: #000;
+	background: linear-gradient(
+		135deg,
+		rgba(0, 217, 255, 0.2) 0%,
+		rgba(183, 148, 246, 0.2) 100%
+	);
+	box-shadow: 0 0 25px rgba(0, 217, 255, 0.4),
+		inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	transform: translateY(-2px);
+}
+
+.retro-button:active {
+	transform: translateY(0);
+}
+
+/* Game-specific terminal styling */
+.terminal.game-active {
+	height: 90vh;
+	min-height: 700px;
+}
+
+.terminal.game-active .content-container {
+	min-height: 600px;
 }

@@ -18,25 +18,17 @@ const Game = () => {
 		switch (game) {
 			case "Hangman":
 				return (
-					<div>
-						<Hangman />
-						<div className="button-container">
-							<button
-								className="retro-button m-4"
-								onClick={handleReturnClick}
-							>
-								Return to Game Selection
-							</button>
-						</div>
+					<div className="w-full max-w-6xl">
+						<Hangman onReturnToSelection={handleReturnClick} />
 					</div>
 				);
 			case "TicTacToe":
 				return (
-					<div>
+					<div className="w-full max-w-4xl">
 						<TicTacToe />
-						<div className="button-container">
+						<div className="button-container mt-4">
 							<button
-								className="retro-button m-4"
+								className="retro-button"
 								onClick={handleReturnClick}
 							>
 								Return to Game Selection
@@ -46,28 +38,22 @@ const Game = () => {
 				);
 			default:
 				return (
-					<div className="flex flex-col justify-center items-center text-2xl m-28 content-container">
-						<h1
-							style={{
-								fontSize: "35px",
-								justifyContent: "center",
-								justifyItems: "center",
-							}}
-						>
+					<div className="flex flex-col justify-center items-center w-full max-w-4xl space-y-8">
+						<h1 className="text-2xl md:text-3xl lg:text-4xl text-center text-terminal-accent font-bold">
 							Select a game to play
 						</h1>
-						<div className="justify-center mr-4">
+						<div className="flex flex-col sm:flex-row gap-6 justify-center">
 							<button
-								className="retro-button m-4"
+								className="retro-button text-lg px-8 py-4"
 								onClick={() => handleGameClick("Hangman")}
 							>
-								Hangman
+								🎯 Hangman
 							</button>
 							<button
-								className="retro-button ml-4"
+								className="retro-button text-lg px-8 py-4"
 								onClick={() => handleGameClick("TicTacToe")}
 							>
-								Tic Tac Toe
+								⭕ Tic Tac Toe
 							</button>
 						</div>
 					</div>
@@ -76,7 +62,7 @@ const Game = () => {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center text-2xl m-4 content-container">
+		<div className="w-full h-full flex justify-center items-center">
 			{renderGame()}
 		</div>
 	);

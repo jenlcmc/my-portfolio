@@ -11,9 +11,11 @@ const TerminalBar = ({
 }) => (
 	// Define the TerminalBar component
 	<div className="terminal-bar">
-		<span className="window-controls close"></span>
-		<span className="window-controls minimize"></span>
-		<span className="window-controls maximize"></span>
+		<div className="window-controls-group">
+			<span className="window-controls close"></span>
+			<span className="window-controls minimize"></span>
+			<span className="window-controls maximize"></span>
+		</div>
 		<div className="tabs">
 			<div
 				className={`tab ${activeTab === "User 1" ? "active" : ""}`}
@@ -34,6 +36,7 @@ const TerminalBar = ({
 				Mini Games
 			</div>
 		</div>
+		<div style={{ width: "60px" }}></div> {/* Spacer for balance */}
 	</div>
 );
 

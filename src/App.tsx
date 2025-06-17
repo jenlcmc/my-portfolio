@@ -25,32 +25,48 @@ const App = () => {
 	}, []);
 
 	return (
-		<div className="min-h-screen flex flex-col">
+		<div className="min-h-screen flex flex-col bg-gradient-to-br from-terminal-bg to-terminal-surface text-terminal-text relative">
+			<div className="animated-bg"></div>
 			{loading ? (
 				<Spinner />
 			) : (
-				<div>
-					{" "}
+				<div className="animate-fade-in relative z-10">
 					<Navigation />
 					<Routes>
 						<Route
 							path="/"
 							element={
-								<div>
-									<main className="flex-grow container mx-auto p-4">
-										<div id="home">
+								<div className="relative">
+									<main className="flex-grow container mx-auto px-4 py-8 space-y-12">
+										<div id="home" className="animate-slide-up">
 											<Home />
 										</div>
-										<div id="about">
+										<div
+											id="about"
+											className="animate-slide-up"
+											style={{ animationDelay: "0.1s" }}
+										>
 											<About />
 										</div>
-										<div id="education">
+										<div
+											id="education"
+											className="animate-slide-up"
+											style={{ animationDelay: "0.2s" }}
+										>
 											<Education />
 										</div>
-										<div id="work">
+										<div
+											id="work"
+											className="animate-slide-up"
+											style={{ animationDelay: "0.3s" }}
+										>
 											<Work />
 										</div>
-										<div id="projects">
+										<div
+											id="projects"
+											className="animate-slide-up"
+											style={{ animationDelay: "0.4s" }}
+										>
 											<Projects />
 										</div>
 									</main>

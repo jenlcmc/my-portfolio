@@ -1,10 +1,11 @@
 import Project from "../components/Prjs/Projects";
+import SectionWrapper from "../components/SectionWrapper";
 
 const Projects = () => {
 	return (
-		<div className="flex flex-col items-center justify-center m-10">
+		<SectionWrapper id="projects" title="Projects" subtitle="~/my-work">
 			<Project />
-		</div>
+		</SectionWrapper>
 	);
 };
 

@@ -1,60 +1,54 @@
+/* Modern About section styling */
 .flex-container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	gap: 2rem;
 }
 
 .text-container {
 	flex: 1;
-	padding-left: 100px;
+	min-width: 300px;
 }
 
 .profile-image {
 	width: 100%;
-	max-width: 600px;
-	border-radius: 50%;
-	background-color: black;
-	border: 4px solid rgba(128, 255, 0, 0.699);
-	position: relative;
-}
-
-.image-container img {
-	width: 100%;
-	max-width: 800px;
-	min-width: 350px;
-	min-height: 350px;
+	max-width: 400px;
+	aspect-ratio: 1;
 	object-fit: cover;
+	filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.2));
 }
 
-@media (max-width: 768px) {
+.image-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 300px;
+}
+
+@media (max-width: 1024px) {
 	.flex-container {
-		flex-direction: column; /* Stack items vertically */
+		flex-direction: column;
 		text-align: center;
 	}
 
 	.text-container {
-		padding-left: 0; /* Remove left padding */
-		padding-top: 20px; /* Add top padding for spacing */
+		order: 2;
 	}
 
-	.image-container img {
-		margin-bottom: 20px; /* Add bottom margin for spacing */
+	.image-container {
+		order: 1;
+		margin-bottom: 2rem;
 	}
 }
 
-.retro-button {
-	font-family: "Courier New", Courier, monospace;
-	color: #00ff00;
-	background-color: #000;
-	border: 2px solid #00ff00;
-	padding: 10px 20px;
-	text-transform: uppercase;
-	box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-	transition: all 0.2s ease-in-out;
-}
+@media (max-width: 768px) {
+	.image-container {
+		min-width: auto;
+	}
 
-.retro-button:hover {
-	background-color: #00ff00;
-	color: #000;
+	.profile-image {
+		max-width: 300px;
+	}
 }

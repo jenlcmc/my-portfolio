@@ -27,7 +27,7 @@ const FolderIcon = ({
 			</div>{" "}
 			{/* Folder Icon */}
 			<div>
-				<p className="text-green-500">{companyName}</p>
+				<p className="text-terminal-accent">{companyName}</p>
 				<p className="text-gray-50">{yearsWorked}</p>
 				<p className="text-gray-50">{jobTitle}</p>
 			</div>
