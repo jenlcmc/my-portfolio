@@ -13,12 +13,28 @@ const About = () => {
 		<SectionWrapper id="about" title="About Me" subtitle="~/whoami">
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 				<div className="image-container order-2 lg:order-1">
+					{/* Tech info panels */}
+					<div className="tech-info-panel tech-info-top">
+						<div>STATUS: ONLINE</div>
+						<div>MODE: DEV</div>
+					</div>
+					<div className="tech-info-panel tech-info-bottom">
+						<div>LANG: TS/JS/PY</div>
+						<div>STACK: FULL</div>
+					</div>
+					<div className="tech-info-panel tech-info-left">
+						<div>ROLE: SWE</div>
+					</div>
+					<div className="tech-info-panel tech-info-right">
+						<div>LEVEL: ?</div>
+					</div>
+
 					<div className="relative group">
-						<div className="absolute inset-0 bg-gradient-to-r from-terminal-accent to-terminal-purple rounded-full blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+						<div className="absolute inset-0 bg-gradient-to-r from-terminal-primary to-terminal-secondary rounded-full blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
 						<img
 							src="https://github.com/jenlcmc/my-portfolio/raw/main/public/UT_Draw.png"
 							alt="Drawing of myself"
-							className="relative profile-image w-full max-w-md mx-auto rounded-full border-4 border-terminal-accent/50 hover:border-terminal-accent transition-all duration-300 hover:scale-105"
+							className="relative profile-image w-full mx-auto rounded-full transition-all duration-300 hover:scale-105"
 						/>
 					</div>
 				</div>

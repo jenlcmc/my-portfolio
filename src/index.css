@@ -1,6 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--terminal-primary: #0099cc;
+	--terminal-secondary: #b794f6;
+	--terminal-bg: #0a0a0f;
+	--terminal-surface: #1a1b23;
+	--terminal-border: #2d2e3f;
+	--terminal-text: #e2e8f0;
+	--terminal-muted: #718096;
+	--glow-primary: rgba(0, 153, 204, 0.3);
+	--glow-secondary: rgba(183, 148, 246, 0.3);
+}
 @tailwind variants;
 
 /* Import modern monospace fonts */
@@ -18,8 +32,58 @@ html {
 body {
 	background: linear-gradient(135deg, #0a0a0b 0%, #1a1b23 100%);
 	color: #e2e8f0;
-	line-height: 1.6;
+	line-height: 1.5;
 	font-size: 14px;
+	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+		sans-serif;
+	overflow-x: hidden;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+/* Simple static grid overlay - no animation */
+body::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(
+			rgba(0, 153, 204, 0.02) 1px,
+			transparent 1px
+		),
+		linear-gradient(90deg, rgba(0, 153, 204, 0.02) 1px, transparent 1px);
+	background-size: 50px 50px;
+	z-index: -1;
+	pointer-events: none;
+}
+
+/* Modern scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--terminal-bg);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--terminal-primary);
+	border-radius: 4px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(180deg, #33e4ff, #c8a8ff);
+}
+
+/* Modern selection */
+::selection {
+	background: var(--glow-primary);
+	color: var(--terminal-text);
 }
 
 /* Animated background pattern */
@@ -239,4 +303,295 @@ textarea:focus {
 .btn-secondary:hover {
 	background: #2d2e3f;
 	border-color: #00d9ff;
+}
+
+/* Modern Big Tech Style Components */
+.glass-morphism {
+	background: rgba(26, 27, 35, 0.8);
+	backdrop-filter: blur(20px);
+	border: 1px solid rgba(45, 46, 63, 0.5);
+	border-radius: 16px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+		0 0 0 1px rgba(255, 255, 255, 0.05),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.neo-brutalist-card {
+	background: var(--terminal-surface);
+	border: 2px solid var(--terminal-primary);
+	border-radius: 12px;
+	box-shadow: 8px 8px 0 var(--terminal-primary), 0 0 20px var(--glow-primary);
+	transform: translateZ(0);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neo-brutalist-card:hover {
+	transform: translate(-4px, -4px);
+	box-shadow: 12px 12px 0 var(--terminal-primary), 0 0 30px var(--glow-primary);
+}
+
+.modern-gradient-text {
+	background: linear-gradient(
+		135deg,
+		var(--terminal-primary),
+		var(--terminal-secondary)
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	font-weight: 700;
+}
+
+.cyber-grid {
+	background-image: linear-gradient(
+			rgba(0, 217, 255, 0.1) 1px,
+			transparent 1px
+		),
+		linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+	background-size: 20px 20px;
+	opacity: 0.3;
+}
+
+.terminal-glow-intense {
+	box-shadow: 0 0 20px var(--glow-primary), 0 0 40px var(--glow-primary),
+		inset 0 0 20px rgba(0, 217, 255, 0.1);
+}
+
+.modern-button {
+	position: relative;
+	background: linear-gradient(
+		135deg,
+		var(--terminal-primary),
+		var(--terminal-secondary)
+	);
+	border: none;
+	border-radius: 12px;
+	color: var(--terminal-bg);
+	font-weight: 600;
+	font-family: "Inter", sans-serif;
+	padding: 12px 32px;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 4px 16px var(--glow-primary);
+}
+
+.modern-button::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.2),
+		transparent
+	);
+	transition: left 0.5s ease;
+}
+
+.modern-button:hover::before {
+	left: 100%;
+}
+
+.modern-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px var(--glow-primary);
+}
+
+.modern-button:active {
+	transform: translateY(0);
+}
+
+/* Modern Typography */
+.heading-xl {
+	font-size: clamp(3rem, 8vw, 6rem);
+	font-weight: 800;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+}
+
+.heading-lg {
+	font-size: clamp(2rem, 5vw, 3.5rem);
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: -0.01em;
+}
+
+.heading-md {
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.text-code {
+	font-family: "JetBrains Mono", "Fira Code", monospace;
+	font-weight: 500;
+}
+
+/* Modern Animations */
+@keyframes float-subtle {
+	0%,
+	100% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+@keyframes pulse-glow {
+	0%,
+	100% {
+		box-shadow: 0 0 20px var(--glow-primary);
+	}
+	50% {
+		box-shadow: 0 0 40px var(--glow-primary), 0 0 60px var(--glow-secondary);
+	}
+}
+
+@keyframes slide-in-bottom {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-in-scale {
+	from {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.animate-float {
+	animation: float-subtle 6s ease-in-out infinite;
+}
+.animate-pulse-glow {
+	animation: pulse-glow 3s ease-in-out infinite;
+}
+.animate-slide-in {
+	animation: slide-in-bottom 0.6s ease-out;
+}
+.animate-fade-in-scale {
+	animation: fade-in-scale 0.5s ease-out;
+}
+
+/* Modern spacing utilities */
+.space-y-modern > * + * {
+	margin-top: 2rem;
+}
+.space-y-modern-lg > * + * {
+	margin-top: 3rem;
+}
+
+/* Compact spacing utilities */
+.space-y-compact > * + * {
+	margin-top: 0.75rem;
+}
+.space-y-tight > * + * {
+	margin-top: 0.5rem;
+}
+.space-y-micro > * + * {
+	margin-top: 0.25rem;
+}
+
+/* Compact padding utilities */
+.p-compact {
+	padding: 0.75rem;
+}
+.px-compact {
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+}
+.py-compact {
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+}
+.p-micro {
+	padding: 0.5rem;
+}
+
+/* Tech-inspired visual effects */
+.cyber-border {
+	position: relative;
+	border: 1px solid rgba(0, 153, 204, 0.3);
+}
+
+.cyber-border::before {
+	content: "";
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	right: -1px;
+	bottom: -1px;
+	background: linear-gradient(
+		45deg,
+		rgba(0, 153, 204, 0.5),
+		transparent 30%,
+		transparent 70%,
+		rgba(183, 148, 246, 0.5)
+	);
+	border-radius: inherit;
+	z-index: -1;
+	animation: border-flow 3s linear infinite;
+}
+
+@keyframes border-flow {
+	0% {
+		background-position: 0% 0%;
+	}
+	100% {
+		background-position: 200% 200%;
+	}
+}
+
+/* Floating elements effect */
+/* Simple floating elements without heavy animations */
+.floating-elements {
+	position: relative;
+}
+
+/* Simple gradient text without animation */
+.holo-text {
+	background: linear-gradient(45deg, #0099cc 0%, #b794f6 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* Compact card design */
+.tech-card {
+	background: rgba(26, 27, 35, 0.8);
+	backdrop-filter: blur(20px);
+	border: 1px solid rgba(0, 153, 204, 0.2);
+	border-radius: 12px;
+	padding: 1rem;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	position: relative;
+}
+
+.tech-card:hover {
+	transform: translateY(-4px);
+	border-color: rgba(0, 153, 204, 0.5);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 153, 204, 0.2);
+}
+
+/* Compact section spacing */
+.section-compact {
+	padding: 2rem 0;
+}
+
+.section-micro {
+	padding: 1rem 0;
 }

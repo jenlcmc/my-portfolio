@@ -26,7 +26,7 @@ const Game = () => {
 				return (
 					<div className="w-full max-w-4xl">
 						<TicTacToe />
-						<div className="button-container mt-4">
+						<div className="button-container mt-2">
 							<button
 								className="retro-button"
 								onClick={handleReturnClick}
@@ -38,19 +38,19 @@ const Game = () => {
 				);
 			default:
 				return (
-					<div className="flex flex-col justify-center items-center w-full max-w-4xl space-y-8">
-						<h1 className="text-2xl md:text-3xl lg:text-4xl text-center text-terminal-accent font-bold">
+					<div className="flex flex-col justify-center items-center w-full max-w-4xl space-y-compact">
+						<h1 className="text-xl md:text-2xl text-center holo-text font-bold">
 							Select a game to play
 						</h1>
-						<div className="flex flex-col sm:flex-row gap-6 justify-center">
+						<div className="flex flex-col sm:flex-row gap-4 justify-center">
 							<button
-								className="retro-button text-lg px-8 py-4"
+								className="retro-button text-base px-6 py-3"
 								onClick={() => handleGameClick("Hangman")}
 							>
 								🎯 Hangman
 							</button>
 							<button
-								className="retro-button text-lg px-8 py-4"
+								className="retro-button text-base px-6 py-3"
 								onClick={() => handleGameClick("TicTacToe")}
 							>
 								⭕ Tic Tac Toe

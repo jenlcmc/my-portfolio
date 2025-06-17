@@ -1,66 +1,226 @@
+/* Modern terminal-inspired work experience styles */
+.career-timeline {
+	background: linear-gradient(
+		135deg,
+		rgba(15, 23, 42, 0.9),
+		rgba(30, 41, 59, 0.8)
+	);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(0, 153, 204, 0.2);
+	border-radius: 12px;
+	position: relative;
+	overflow: hidden;
+}
+
+.career-timeline::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, #0099cc, transparent);
+}
+
+.terminal-card {
+	background: rgba(15, 23, 42, 0.6);
+	border: 1px solid rgba(71, 85, 105, 0.3);
+	border-radius: 8px;
+	backdrop-filter: blur(8px);
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.terminal-card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(135deg, rgba(0, 153, 204, 0.05), transparent);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.terminal-card:hover {
+	border-color: rgba(0, 153, 204, 0.5);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(0, 153, 204, 0.15);
+}
+
+.terminal-card:hover::before {
+	opacity: 1;
+}
+
+.git-commit-hash {
+	font-family: "JetBrains Mono", "Fira Code", monospace;
+	color: #fbbf24;
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+
+.tech-badge {
+	background: linear-gradient(
+		135deg,
+		rgba(0, 153, 204, 0.2),
+		rgba(0, 153, 204, 0.1)
+	);
+	border: 1px solid rgba(0, 153, 204, 0.3);
+	color: #0099cc;
+	padding: 0.25rem 0.75rem;
+	border-radius: 9999px;
+	font-size: 0.75rem;
+	font-family: "JetBrains Mono", monospace;
+	transition: all 0.2s ease;
+	backdrop-filter: blur(4px);
+}
+
+.tech-badge:hover {
+	background: linear-gradient(
+		135deg,
+		rgba(0, 153, 204, 0.3),
+		rgba(0, 153, 204, 0.2)
+	);
+	border-color: rgba(0, 153, 204, 0.5);
+	transform: translateY(-1px);
+}
+
+.career-stats-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	gap: 1rem;
+}
+
+.stat-card {
+	background: linear-gradient(
+		135deg,
+		rgba(15, 23, 42, 0.8),
+		rgba(30, 41, 59, 0.6)
+	);
+	border: 1px solid rgba(0, 153, 204, 0.2);
+	border-radius: 8px;
+	padding: 1rem;
+	text-align: center;
+	backdrop-filter: blur(8px);
+	position: relative;
+	overflow: hidden;
+}
+
+.stat-card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #0099cc, transparent);
+}
+
+.stat-value {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #0099cc;
+	font-family: "JetBrains Mono", monospace;
+}
+
+.stat-label {
+	font-size: 0.75rem;
+	color: #94a3b8;
+	font-family: "JetBrains Mono", monospace;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-top: 0.25rem;
+}
+
+.git-graph-line {
+	background: linear-gradient(to bottom, #0099cc, rgba(0, 153, 204, 0.3));
+	border-radius: 1px;
+}
+
+.git-commit-dot {
+	background: #0099cc;
+	border: 2px solid #0f172a;
+	box-shadow: 0 0 0 2px rgba(0, 153, 204, 0.3);
+}
+
+.experience-detail {
+	background: linear-gradient(
+		135deg,
+		rgba(15, 23, 42, 0.9),
+		rgba(30, 41, 59, 0.7)
+	);
+	border: 1px solid rgba(0, 153, 204, 0.3);
+	border-radius: 8px;
+	backdrop-filter: blur(10px);
+	position: relative;
+}
+
+.experience-detail::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, #0099cc, transparent);
+}
+
+.terminal-prompt {
+	color: #0099cc;
+	font-family: "JetBrains Mono", monospace;
+}
+
+/* Legacy styles (kept for compatibility) */
 .retro-button {
-	font-family: "Courier New", Courier, monospace;
-	color: #00d9ff;
-	background-color: #000;
-	border: 2px solid #00d9ff;
+	font-family: "JetBrains Mono", "Courier New", monospace;
+	color: #0099cc;
+	background-color: rgba(15, 23, 42, 0.8);
+	border: 2px solid #0099cc;
 	padding: 10px 20px;
 	text-transform: uppercase;
-	box-shadow: 0 0 5px rgba(0, 217, 255, 0.5);
+	box-shadow: 0 0 5px rgba(0, 153, 204, 0.5);
 	transition: all 0.2s ease-in-out;
+	border-radius: 4px;
+	backdrop-filter: blur(4px);
 }
 
 .retro-button:hover {
-	background-color: #00d9ff;
-	color: #000;
-}
-
-.fixed {
-	position: fixed;
-}
-
-.bg-black {
-	background-color: black;
-}
-
-.bg-opacity {
-	opacity: 0.95;
+	background-color: #0099cc;
+	color: #0f172a;
+	box-shadow: 0 0 15px rgba(0, 153, 204, 0.6);
 }
 
 .terminal-modal {
-	background-color: #1e1e1e;
-	border: 1px solid #333;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	border-radius: 5px;
-	width: 50%;
-	height: 50%;
-}
-
-.text-white {
-	color: #00d9ff;
-}
-
-.job-description-container p:last-child {
-	color: orange;
-}
-
-.font-mono {
-	font-family: "Courier New", Courier, monospace;
+	background: linear-gradient(
+		135deg,
+		rgba(15, 23, 42, 0.95),
+		rgba(30, 41, 59, 0.9)
+	);
+	border: 1px solid rgba(0, 153, 204, 0.3);
+	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+	border-radius: 8px;
+	backdrop-filter: blur(20px);
 }
 
 .close-btn {
 	color: white;
-	background-color: #e53e3e;
+	background: linear-gradient(135deg, #ef4444, #dc2626);
 	border: none;
 	width: 24px;
 	height: 24px;
 	border-radius: 50%;
-	font-size: 18px;
+	font-size: 16px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+	transition: all 0.2s ease;
+	font-weight: bold;
 }
 
 .close-btn:hover {
-	background-color: #c53030;
+	background: linear-gradient(135deg, #dc2626, #b91c1c);
+	transform: scale(1.05);
 }

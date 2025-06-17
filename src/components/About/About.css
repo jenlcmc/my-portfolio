@@ -14,17 +14,111 @@
 
 .profile-image {
 	width: 100%;
-	max-width: 400px;
+	max-width: 600px;
 	aspect-ratio: 1;
 	object-fit: cover;
-	filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.2));
+	filter: drop-shadow(0 0 30px rgba(0, 153, 204, 0.4));
+	border: 3px solid #0099cc;
+	box-shadow: 0 0 20px rgba(0, 153, 204, 0.3),
+		inset 0 0 30px rgba(0, 153, 204, 0.1);
 }
 
 .image-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-width: 300px;
+	min-width: 500px;
+	position: relative;
+	padding: 40px;
+}
+
+/* Terminal-style corner brackets */
+.image-container::before {
+	content: "";
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 60px;
+	height: 60px;
+	border: 2px solid #0099cc;
+	border-right: none;
+	border-bottom: none;
+	z-index: 1;
+	pointer-events: none;
+}
+
+.image-container::after {
+	content: "";
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: 60px;
+	height: 60px;
+	border: 2px solid #0099cc;
+	border-left: none;
+	border-top: none;
+	z-index: 1;
+	pointer-events: none;
+}
+
+/* Remove duplicate CSS */
+
+/* Add tech info panels */
+.tech-info-panel {
+	position: absolute;
+	background: rgba(26, 27, 35, 0.9);
+	border: 1px solid rgba(0, 153, 204, 0.3);
+	border-radius: 8px;
+	padding: 12px;
+	font-family: "JetBrains Mono", monospace;
+	font-size: 12px;
+	color: #0099cc;
+	backdrop-filter: blur(10px);
+	z-index: 2;
+}
+
+.tech-info-top {
+	top: 0;
+	right: 80px;
+	min-width: 120px;
+}
+
+.tech-info-bottom {
+	bottom: 0;
+	left: 80px;
+	min-width: 120px;
+}
+
+.tech-info-left {
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%) rotate(-90deg);
+	transform-origin: center;
+	min-width: 100px;
+}
+
+.tech-info-right {
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%) rotate(90deg);
+	transform-origin: center;
+	min-width: 100px;
+}
+
+/* Decorative grid overlay */
+.image-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 500px;
+	position: relative;
+	padding: 40px;
+	background-image: linear-gradient(
+			rgba(0, 153, 204, 0.05) 1px,
+			transparent 1px
+		),
+		linear-gradient(90deg, rgba(0, 153, 204, 0.05) 1px, transparent 1px);
+	background-size: 30px 30px;
 }
 
 @media (max-width: 1024px) {
@@ -46,9 +140,26 @@
 @media (max-width: 768px) {
 	.image-container {
 		min-width: auto;
+		padding: 20px;
 	}
 
 	.profile-image {
-		max-width: 300px;
+		max-width: 400px;
+	}
+
+	.image-container::before,
+	.image-container::after {
+		width: 40px;
+		height: 40px;
+	}
+
+	.tech-info-panel {
+		font-size: 10px;
+		padding: 8px;
+	}
+
+	.tech-info-left,
+	.tech-info-right {
+		display: none;
 	}
 }
