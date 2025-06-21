@@ -42,7 +42,7 @@ const workExperienceData = [
 	},
 	{
 		companyName: "University of Nevada, Las Vegas",
-		yearsWorked: "Jan 2025 - Current",
+		yearsWorked: "Jan 2025 - May 2025",
 		jobTitle: "Computer Science Graduate Assistant",
 		jobDescription: [
 			"• Worked approximately 20 hours per week while attending school full-time",

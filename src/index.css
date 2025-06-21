@@ -4,6 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global mobile fixes - prevent horizontal overflow */
+* {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	max-width: 100%;
+}
+
+html,
+body {
+	overflow-x: hidden;
+	width: 100%;
+}
+
+/* Viewport meta tag equivalent CSS for better mobile support */
+@viewport {
+	width: device-width;
+	initial-scale: 1;
+}
+
 :root {
 	--terminal-primary: #0099cc;
 	--terminal-secondary: #b794f6;
@@ -27,6 +50,9 @@ html {
 		"Courier New", monospace;
 	background: linear-gradient(135deg, #0a0a0b 0%, #1a1b23 100%);
 	min-height: 100vh;
+	/* Fix iOS viewport issues */
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
 }
 
 body {
@@ -40,6 +66,10 @@ body {
 	position: relative;
 	margin: 0;
 	padding: 0;
+	/* Fix iOS bounce and scrolling issues */
+	-webkit-overflow-scrolling: touch;
+	width: 100%;
+	max-width: 100vw;
 }
 
 /* Simple static grid overlay - no animation */
@@ -58,6 +88,9 @@ body::before {
 	background-size: 50px 50px;
 	z-index: -1;
 	pointer-events: none;
+	/* Fix mobile positioning */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
 }
 
 /* Modern scrollbar */
@@ -106,6 +139,24 @@ body::before {
 			transparent 50%
 		);
 	animation: float 20s ease-in-out infinite;
+	/* Fix mobile performance and positioning */
+	will-change: transform;
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+/* Disable animations on mobile to improve performance */
+@media (max-width: 768px) {
+	.animated-bg {
+		animation: none;
+	}
+
+	/* Reduce motion for users who prefer it */
+	@media (prefers-reduced-motion: reduce) {
+		.animated-bg {
+			animation: none;
+		}
+	}
 }
 
 @keyframes float {
@@ -227,33 +278,144 @@ body::before {
 }
 
 /* Enhanced responsive design */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+	html {
+		/* Fix iOS viewport units */
+		height: -webkit-fill-available;
+	}
+
+	body {
+		/* Ensure proper mobile viewport */
+		min-height: 100vh;
+		min-height: -webkit-fill-available;
+		font-size: 16px; /* Prevent iOS zoom on form inputs */
+	}
+
 	.glass-effect {
-		margin: 0 16px;
-		padding: 16px;
+		margin: 0 12px;
+		padding: 12px;
 	}
 
 	.terminal {
-		margin: 1rem;
-		height: 65vh;
-		padding: 16px;
+		margin: 0.5rem;
+		height: 60vh;
+		padding: 12px;
+		width: calc(100vw - 1rem);
+		max-width: calc(100vw - 1rem);
+		box-sizing: border-box;
 	}
 
 	.terminal-bar {
-		padding: 12px 16px;
-		margin: -16px -16px 16px -16px;
+		padding: 8px 12px;
+		margin: -12px -12px 12px -12px;
+	}
+
+	/* Fix container overflow on mobile */
+	.container {
+		max-width: 100%;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	/* Ensure content doesn't overflow */
+	* {
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+}
+
+@media (max-width: 640px) {
+	.glass-effect {
+		margin: 0 8px;
+		padding: 8px;
+	}
+
+	.terminal {
+		margin: 0.25rem;
+		height: 55vh;
+		padding: 8px;
+		width: calc(100vw - 0.5rem);
+		max-width: calc(100vw - 0.5rem);
+	}
+
+	.terminal-bar {
+		padding: 6px 8px;
+		margin: -8px -8px 8px -8px;
+	}
+
+	/* Mobile typography adjustments */
+	.heading-xl {
+		font-size: clamp(2rem, 6vw, 4rem);
+	}
+
+	.heading-lg {
+		font-size: clamp(1.5rem, 4vw, 2.5rem);
+	}
+
+	.heading-md {
+		font-size: clamp(1.25rem, 3vw, 1.75rem);
 	}
 }
 
 @media (max-width: 480px) {
+	body {
+		font-size: 16px; /* Prevent iOS zoom */
+	}
+
 	.tabs {
 		flex-direction: column;
 		gap: 4px;
+		width: 100%;
 	}
 
 	.tab {
-		padding: 6px 12px;
-		font-size: 12px;
+		padding: 8px 16px;
+		font-size: 14px;
+		width: 100%;
+		text-align: center;
+	}
+
+	/* Fix button spacing on small screens */
+	.modern-button {
+		padding: 10px 20px;
+		font-size: 14px;
+		width: 100%;
+		margin-bottom: 8px;
+	}
+
+	/* Ensure cards don't overflow */
+	.tech-card {
+		margin: 0 4px;
+		padding: 8px;
+	}
+}
+
+/* iPhone specific fixes */
+@media screen and (max-width: 430px) {
+	/* iPhone 14 Pro Max and similar */
+	.container {
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+
+	/* Fix text wrapping issues */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		word-wrap: break-word;
+		hyphens: auto;
+	}
+
+	/* Ensure proper spacing */
+	.space-y-modern > * + * {
+		margin-top: 1rem;
+	}
+
+	.space-y-modern-lg > * + * {
+		margin-top: 1.5rem;
 	}
 }
 
@@ -594,4 +756,729 @@ textarea:focus {
 
 .section-micro {
 	padding: 1rem 0;
+}
+
+/* Mobile-specific utility classes */
+.mobile-safe {
+	padding-left: env(safe-area-inset-left);
+	padding-right: env(safe-area-inset-right);
+}
+
+.mobile-container {
+	width: 100%;
+	max-width: 100vw;
+	padding-left: max(16px, env(safe-area-inset-left));
+	padding-right: max(16px, env(safe-area-inset-right));
+	box-sizing: border-box;
+}
+
+/* Fix iOS viewport bugs */
+.full-height-mobile {
+	height: 100vh;
+	height: -webkit-fill-available;
+}
+
+/* Prevent horizontal scroll on mobile */
+.no-scroll-x {
+	overflow-x: hidden;
+	max-width: 100vw;
+}
+
+/* Fix text size on mobile Safari */
+.mobile-text {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+/* Fix touch targets for mobile */
+.touch-target {
+	min-height: 44px;
+	min-width: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Responsive grid that works on all devices */
+.responsive-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 1rem;
+	width: 100%;
+}
+
+@media (max-width: 480px) {
+	.responsive-grid {
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+	}
+}
+
+/* Fix flex layout issues on mobile */
+.mobile-flex {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+	.mobile-flex {
+		flex-direction: row;
+		align-items: center;
+	}
+}
+
+/* Fix common card layout issues */
+.card-mobile {
+	width: 100%;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+	.card-mobile {
+		margin-left: 8px;
+		margin-right: 8px;
+		width: calc(100% - 16px);
+	}
+}
+
+/* Terminal-specific mobile fixes */
+.terminal {
+	/* Base terminal styles for all screens */
+	box-sizing: border-box;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+}
+
+/* Terminal content wrapper to prevent overflow */
+.terminal-content,
+.content-container {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: auto;
+	overflow-y: auto;
+	box-sizing: border-box;
+}
+
+/* Terminal text should wrap properly */
+.terminal pre,
+.terminal code {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	max-width: 100%;
+}
+
+/* Fix HUD elements that might cause overflow */
+.hud-bottom-bar,
+.hud-side-left,
+.hud-side-right,
+.hud-scanner,
+.terminal-bar-simple {
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.hud-stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	max-width: 100%;
+}
+
+.hud-stat {
+	flex-shrink: 1;
+	min-width: 0;
+	font-size: clamp(10px, 2vw, 14px);
+}
+
+/* Fix terminal on all mobile devices */
+@media (max-width: 768px) {
+	.terminal {
+		/* Ensure terminal never overflows */
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		left: 0;
+		right: 0;
+		/* Add safe margins */
+		margin: 8px auto;
+		/* Ensure it fits within viewport */
+		max-width: calc(100vw - 16px) !important;
+		min-width: 0;
+	}
+
+	.terminal-wrapper {
+		width: 100%;
+		max-width: 100%;
+		padding: 0 8px;
+		box-sizing: border-box;
+	}
+
+	/* Simplify HUD on mobile */
+	.hud-side-left,
+	.hud-side-right {
+		display: none; /* Hide side elements on mobile */
+	}
+
+	.hud-bottom-bar {
+		padding: 4px;
+		font-size: 10px;
+	}
+
+	.hud-stats {
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.activity-bars {
+		display: none; /* Hide complex animations on mobile */
+	}
+}
+
+@media (max-width: 640px) {
+	.terminal {
+		/* Even more restrictive on small screens */
+		width: 100% !important;
+		max-width: calc(100vw - 16px) !important;
+		margin: 4px auto !important;
+		padding: 6px !important;
+	}
+
+	.terminal-bar,
+	.terminal-bar-simple {
+		padding: 4px 6px !important;
+		margin: -6px -6px 6px -6px !important;
+		font-size: 12px;
+		overflow: hidden;
+	}
+
+	.window-controls-group {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		max-width: 100%;
+	}
+
+	.system-info-simple {
+		font-size: 10px;
+	}
+
+	.info-items {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+}
+
+@media (max-width: 430px) {
+	.terminal {
+		/* iPhone and small phone specific */
+		width: 100% !important;
+		max-width: calc(100vw - 12px) !important;
+		margin: 2px auto !important;
+		padding: 4px !important;
+		font-size: 12px;
+	}
+
+	.terminal-content,
+	.content-container {
+		font-size: 11px;
+		line-height: 1.3;
+	}
+
+	/* Hide complex HUD elements on very small screens */
+	.hud-corners,
+	.hud-status-panels {
+		display: none;
+	}
+
+	.terminal-bar-simple {
+		padding: 2px 4px !important;
+		font-size: 10px;
+	}
+}
+
+/* Critical mobile container fixes */
+/* Ensure all main containers respect viewport bounds */
+.container,
+.mx-auto,
+[class*="container"] {
+	max-width: 100vw;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+	.container,
+	.mx-auto,
+	[class*="container"] {
+		padding-left: 12px !important;
+		padding-right: 12px !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		width: 100% !important;
+		max-width: 100vw !important;
+	}
+}
+
+/* Fix any flex layouts that might cause overflow */
+.flex-grow,
+.flex-1 {
+	min-width: 0;
+	overflow: hidden;
+}
+
+/* Ensure main content areas are properly contained */
+main,
+.main-content {
+	max-width: 100vw;
+	overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+	main,
+	.main-content {
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+}
+
+/* Fix space-y utilities on mobile */
+@media (max-width: 640px) {
+	.space-y-12 > * + * {
+		margin-top: 1.5rem !important;
+	}
+
+	.space-y-8 > * + * {
+		margin-top: 1rem !important;
+	}
+
+	.py-8 {
+		padding-top: 1rem !important;
+		padding-bottom: 1rem !important;
+	}
+
+	.px-4 {
+		padding-left: 8px !important;
+		padding-right: 8px !important;
+	}
+}
+
+/* Debug helper - uncomment to see overflow issues */
+/*
+@media (max-width: 768px) {
+	* {
+		outline: 1px solid red !important;
+	}
+	
+	.terminal {
+		outline: 2px solid yellow !important;
+	}
+}
+*/
+
+/* Work experience mobile fixes - company names and content */
+.work-experience-container {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
+
+/* Fix long company names getting cut off */
+.company-name,
+[class*="companyName"] {
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
+	max-width: 100%;
+	white-space: normal;
+}
+
+/* Work experience card layouts */
+.work-card,
+.career-timeline,
+.terminal-card {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+/* Fix grid layouts in work section */
+.career-stats-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	gap: 0.75rem;
+	width: 100%;
+}
+
+@media (max-width: 768px) {
+	/* Company name specific fixes */
+	.company-name,
+	[class*="companyName"] {
+		font-size: 0.9rem;
+		line-height: 1.3;
+		display: block;
+		width: 100%;
+	}
+
+	/* Job title and company layout fixes */
+	.work-header,
+	.job-info {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		width: 100%;
+	}
+
+	/* Career timeline adjustments */
+	.career-timeline {
+		margin: 0 4px;
+		padding: 12px;
+	}
+
+	.terminal-card {
+		margin: 8px 0;
+		padding: 12px;
+	}
+
+	/* Stats grid mobile layout */
+	.career-stats-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
+	}
+
+	.stat-card {
+		padding: 8px;
+		font-size: 0.8rem;
+	}
+
+	/* Tech badges mobile layout */
+	.tech-badge {
+		font-size: 0.65rem;
+		padding: 0.2rem 0.5rem;
+		margin: 2px;
+	}
+}
+
+@media (max-width: 640px) {
+	/* Even smaller screens - stack everything vertically */
+	.work-item-header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+		width: 100%;
+	}
+
+	/* Job title first, then company name on new line */
+	.job-title,
+	[class*="jobTitle"] {
+		font-size: 0.9rem;
+		font-weight: 600;
+		width: 100%;
+		margin-bottom: 2px;
+		order: 1;
+	}
+
+	/* Company names get full width on new line */
+	.company-name,
+	[class*="companyName"] {
+		font-size: 0.85rem;
+		font-weight: 500;
+		color: #0099cc;
+		width: 100%;
+		margin-bottom: 4px;
+		order: 2;
+		display: block;
+		margin-top: 4px;
+	}
+
+	/* Years worked */
+	.years-worked,
+	[class*="yearsWorked"] {
+		font-size: 0.75rem;
+		color: #94a3b8;
+		width: 100%;
+		order: 3;
+	}
+
+	/* Career stats single column on very small screens */
+	.career-stats-grid {
+		grid-template-columns: 1fr;
+		gap: 0.5rem;
+	}
+
+	/* Work description text */
+	.work-description,
+	.job-description {
+		font-size: 0.8rem;
+		line-height: 1.4;
+		margin-top: 8px;
+	}
+}
+
+@media (max-width: 430px) {
+	/* iPhone and very small phones */
+	.company-name,
+	[class*="companyName"] {
+		font-size: 0.8rem;
+		line-height: 1.2;
+		font-weight: 700;
+		color: #00d9ff;
+		text-shadow: 0 0 5px rgba(0, 217, 255, 0.3);
+	}
+
+	.job-title,
+	[class*="jobTitle"] {
+		font-size: 0.85rem;
+		line-height: 1.3;
+	}
+
+	.years-worked,
+	[class*="yearsWorked"] {
+		font-size: 0.7rem;
+	}
+
+	/* Make tech stack more compact */
+	.tech-stack-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 3px;
+		margin-top: 6px;
+	}
+
+	.tech-badge {
+		font-size: 0.6rem;
+		padding: 0.15rem 0.4rem;
+		border-radius: 4px;
+	}
+
+	/* Ensure work cards don't overflow */
+	.work-card,
+	.terminal-card {
+		margin: 4px 0;
+		padding: 8px;
+		width: 100%;
+		max-width: 100%;
+	}
+}
+
+/* Additional mobile layout fixes for work experience */
+@media (max-width: 768px) {
+	/* Force all work-related flex containers to stack vertically */
+	.work-container .flex.items-center,
+	[class*="work"] .flex.items-center {
+		flex-direction: column !important;
+		align-items: flex-start !important;
+		width: 100%;
+	}
+
+	/* Ensure company names are fully visible */
+	span:contains("@"),
+	.company-display {
+		display: block !important;
+		width: 100% !important;
+		margin-top: 4px !important;
+		margin-bottom: 4px !important;
+		font-size: 0.9rem !important;
+		line-height: 1.3 !important;
+		word-break: break-word !important;
+	}
+}
+
+@media (max-width: 640px) {
+	/* More aggressive fixes for small screens */
+	.grid.grid-cols-2 {
+		grid-template-columns: 1fr !important;
+		gap: 8px !important;
+	}
+
+	.md\\:grid-cols-4 {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+
+	/* Text size adjustments */
+	.text-2xl {
+		font-size: 1.25rem !important;
+	}
+
+	.text-sm {
+		font-size: 0.75rem !important;
+	}
+
+	/* Padding adjustments */
+	.p-4 {
+		padding: 8px !important;
+	}
+
+	.p-6 {
+		padding: 12px !important;
+	}
+
+	/* Work experience specific container fixes */
+	.space-y-4 > * + * {
+		margin-top: 8px !important;
+	}
+
+	.space-y-6 > * + * {
+		margin-top: 12px !important;
+	}
+}
+
+@media (max-width: 430px) {
+	/* iPhone specific - ultra compact layout */
+	.grid {
+		grid-template-columns: 1fr !important;
+		gap: 6px !important;
+	}
+
+	.text-center {
+		text-align: left !important;
+	}
+
+	/* Make sure all text is readable */
+	.font-mono {
+		font-size: 0.7rem !important;
+		line-height: 1.2 !important;
+	}
+
+	/* Compact spacing */
+	.space-y-2 > * + * {
+		margin-top: 4px !important;
+	}
+
+	.mb-2 {
+		margin-bottom: 4px !important;
+	}
+
+	.mb-4 {
+		margin-bottom: 6px !important;
+	}
+
+	.mb-6 {
+		margin-bottom: 8px !important;
+	}
+}
+
+/* Debug helper for work section - uncomment to see layout issues */
+/*
+@media (max-width: 768px) {
+	[class*="work"] {
+		outline: 1px solid blue !important;
+	}
+	
+	.flex {
+		outline: 1px solid red !important;
+	}
+	
+	span:contains('@') {
+		background-color: yellow !important;
+		color: black !important;
+	}
+}
+*/
+
+/* React component specific mobile fixes for work experience layout */
+@media (max-width: 640px) {
+	/* Target the specific structure from WorkExp.tsx - force vertical stacking */
+	.flex.items-center.space-x-3 {
+		flex-direction: column !important;
+		align-items: flex-start !important;
+		gap: 6px !important;
+		width: 100% !important;
+	}
+
+	.flex.items-center.space-x-3 > * {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		width: 100% !important;
+	}
+
+	/* Order of elements: 1. feat: label, 2. job title, 3. company name */
+	.text-yellow-400.font-mono {
+		font-size: 0.75rem !important;
+		order: 1 !important;
+		margin-bottom: 2px !important;
+		width: 100% !important;
+	}
+
+	/* Job title - make it prominent and first */
+	.text-white.font-semibold {
+		font-size: 0.9rem !important;
+		font-weight: 600 !important;
+		width: 100% !important;
+		order: 2 !important;
+		display: block !important;
+		margin-bottom: 0 !important;
+	}
+
+	/* Company name with @ symbol - on new line */
+	.text-terminal-accent {
+		font-size: 0.85rem !important;
+		font-weight: 500 !important;
+		color: #0099cc !important;
+		width: 100% !important;
+		order: 3 !important;
+		display: block !important;
+		margin-top: 4px !important;
+		word-wrap: break-word !important;
+		max-width: 100% !important;
+		line-height: 1.3 !important;
+	}
+
+	/* Years worked and status info */
+	.flex.items-center.space-x-4.text-sm.text-gray-400 {
+		flex-direction: column !important;
+		align-items: flex-start !important;
+		gap: 2px !important;
+		margin-top: 6px !important;
+		order: 4 !important;
+		width: 100% !important;
+	}
+
+	.flex.items-center.space-x-4.text-sm.text-gray-400 > * {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		width: 100% !important;
+	}
+
+	/* Tech stack container */
+	.flex.flex-wrap.gap-2 {
+		margin-top: 8px !important;
+		order: 5 !important;
+		width: 100% !important;
+	}
+
+	/* Override all horizontal spacing on mobile */
+	.space-x-3 > * + *,
+	.space-x-4 > * + * {
+		margin-left: 0 !important;
+	}
+}
+
+/* Even smaller phones - ultra compact */
+@media (max-width: 430px) {
+	.text-white.font-semibold {
+		font-size: 0.85rem !important;
+	}
+
+	.text-terminal-accent {
+		font-size: 0.8rem !important;
+		margin-top: 2px !important;
+	}
+
+	.text-yellow-400.font-mono {
+		font-size: 0.7rem !important;
+	}
 }

@@ -118,8 +118,18 @@ function WorkExperience() {
 											{work.yearsWorked}
 										</span>
 										<span className="flex items-center space-x-1">
-											<span className="w-2 h-2 rounded-full bg-green-400"></span>
-											<span>Active contribution</span>
+											<span
+												className={`w-2 h-2 rounded-full ${
+													work.yearsWorked.includes("Current")
+														? "bg-green-400"
+														: "bg-orange-400"
+												}`}
+											></span>
+											<span>
+												{work.yearsWorked.includes("Current")
+													? "Active contribution"
+													: "Past contribution"}
+											</span>
 										</span>
 									</div>
 

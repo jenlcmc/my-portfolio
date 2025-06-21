@@ -233,9 +233,6 @@ const Education = () => {
 						<div className="text-yellow-400">
 							⚡ Master's degree in progress...
 						</div>
-						<div className="text-terminal-secondary">
-							📊 Academic performance: Excellent
-						</div>
 						<div className="text-terminal-muted">
 							🎯 Next milestone: Graduate degree completion
 						</div>
