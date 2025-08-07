@@ -41,7 +41,6 @@ body {
 @tailwind variants;
 
 /* Import modern monospace fonts */
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 /* Base styles with modern terminal aesthetic */
 html {
