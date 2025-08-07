@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 // Define types for the square values and the square props
 type SquareValue = 'X' | 'O' | null;
