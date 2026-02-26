@@ -1,80 +1,65 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        // Modern terminal color palette
-        terminal: {
-          bg: '#0A0A0B',
-          surface: '#1A1B23',
-          border: '#2D2E3F',
-          accent: '#0099CC',
-          green: '#0099CC',
-          purple: '#B794F6',
-          yellow: '#F6E05E',
-          red: '#FC8181',
-          text: '#E2E8F0',
-          muted: '#718096',
+        base: {
+          DEFAULT: '#08080f',
+          panel: '#0e0e1a',
+          surface: '#151522',
+        },
+        line: {
+          DEFAULT: '#1e1e32',
+          active: '#2e2e4a',
+        },
+        term: {
+          green: '#00cc88',
+          cyan: '#00aaff',
+          amber: '#ffaa00',
+          red: '#ff4455',
+        },
+        txt: {
+          DEFAULT: '#c8c8d4',
+          dim: '#7a7a8e',
+          bright: '#e8e8f0',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
-      },
-      fontSize: {
-        xs: '0.75rem',
-        sm: '0.875rem',
-        base: '1rem',
-        lg: '1.125rem',
-        xl: '1.25rem',
-        '2xl': '1.5rem',
-        '3xl': '1.875rem',
-        '4xl': '2.25rem',
-        '5xl': '3rem',
-        '6xl': '3.75rem',
-        '7xl': '4.5rem',
-        '8xl': '6rem',
-        '9xl': '8rem',
-      },
-      spacing: {
-        18: '4.5rem',
-        88: '22rem',
-      },
-      boxShadow: {
-        glow: '0 0 20px rgba(0, 217, 255, 0.3)',
-        'glow-lg': '0 0 40px rgba(0, 217, 255, 0.4)',
-        neo: '8px 8px 0 #00D9FF',
-        'neo-hover': '12px 12px 0 #00D9FF',
+        mono: ['"JetBrains Mono"', '"Fira Code"', 'Consolas', 'monospace'],
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.6s ease-out',
-        glow: 'glow 2s ease-in-out infinite alternate',
-        typing: 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite',
+        'fade-in': 'fadeIn 0.4s ease-out',
+        reveal: 'reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+        float: 'float 6s ease-in-out infinite',
+        scan: 'scan 8s linear infinite',
+        'pulse-slow': 'pulseSlow 2.5s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
         },
-        slideUp: {
-          '0%': { transform: 'translateY(30px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+        reveal: {
+          from: { opacity: '0', transform: 'translateY(24px) scale(0.98)' },
+          to: { opacity: '1', transform: 'translateY(0) scale(1)' },
         },
-        glow: {
-          '0%': { textShadow: '0 0 5px rgba(0, 217, 255, 0.5)' },
-          '100%': {
-            textShadow: '0 0 20px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 217, 255, 0.6)',
-          },
+        glowPulse: {
+          '0%, 100%': { boxShadow: '0 0 8px rgba(0, 204, 136, 0.15)' },
+          '50%': { boxShadow: '0 0 20px rgba(0, 204, 136, 0.3)' },
         },
-        typing: {
-          from: { width: '0' },
-          to: { width: '100%' },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-6px)' },
         },
-        'blink-caret': {
-          'from, to': { borderColor: 'transparent' },
-          '50%': { borderColor: '#00D9FF' },
+        scan: {
+          from: { transform: 'translateY(-100%)' },
+          to: { transform: 'translateY(100vh)' },
+        },
+        pulseSlow: {
+          '0%, 100%': { opacity: '0.4' },
+          '50%': { opacity: '1' },
         },
       },
     },

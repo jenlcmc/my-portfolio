@@ -1,1483 +1,327 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Global mobile fixes - prevent horizontal overflow */
-* {
-	box-sizing: border-box;
-}
-
+/* ── Reset ── */
 *,
 *::before,
 *::after {
-	max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html,
-body {
-	overflow-x: hidden;
-	width: 100%;
-}
-
-/* Viewport meta tag equivalent CSS for better mobile support */
-@viewport {
-	width: device-width;
-	initial-scale: 1;
-}
-
-:root {
-	--terminal-primary: #0099cc;
-	--terminal-secondary: #b794f6;
-	--terminal-bg: #0a0a0f;
-	--terminal-surface: #1a1b23;
-	--terminal-border: #2d2e3f;
-	--terminal-text: #e2e8f0;
-	--terminal-muted: #718096;
-	--glow-primary: rgba(0, 153, 204, 0.3);
-	--glow-secondary: rgba(183, 148, 246, 0.3);
-}
-@tailwind variants;
-
-/* Import modern monospace fonts */
-
-/* Base styles with modern terminal aesthetic */
 html {
-	scroll-behavior: smooth;
-	font-family: "JetBrains Mono", "Fira Code", "Consolas", "Monaco",
-		"Courier New", monospace;
-	background: linear-gradient(135deg, #0a0a0b 0%, #1a1b23 100%);
-	min-height: 100vh;
-	/* Fix iOS viewport issues */
-	-webkit-text-size-adjust: 100%;
-	text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-	background: linear-gradient(135deg, #0a0a0b 0%, #1a1b23 100%);
-	color: #e2e8f0;
-	line-height: 1.5;
-	font-size: 14px;
-	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-		sans-serif;
-	overflow-x: hidden;
-	position: relative;
-	margin: 0;
-	padding: 0;
-	/* Fix iOS bounce and scrolling issues */
-	-webkit-overflow-scrolling: touch;
-	width: 100%;
-	max-width: 100vw;
+  background-color: #08080f;
+  color: #c8c8d4;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Simple static grid overlay - no animation */
-body::before {
-	content: "";
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: linear-gradient(
-			rgba(0, 153, 204, 0.02) 1px,
-			transparent 1px
-		),
-		linear-gradient(90deg, rgba(0, 153, 204, 0.02) 1px, transparent 1px);
-	background-size: 50px 50px;
-	z-index: -1;
-	pointer-events: none;
-	/* Fix mobile positioning */
-	transform: translateZ(0);
-	-webkit-transform: translateZ(0);
-}
-
-/* Modern scrollbar */
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
-	width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-	background: var(--terminal-bg);
-	border-radius: 4px;
+  background: #08080f;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: var(--terminal-primary);
-	border-radius: 4px;
-	border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1e1e32;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(180deg, #33e4ff, #c8a8ff);
+  background: #2e2e4a;
 }
 
-/* Modern selection */
+/* ── Selection ── */
 ::selection {
-	background: var(--glow-primary);
-	color: var(--terminal-text);
+  background: rgba(0, 170, 255, 0.2);
+  color: #e8e8f0;
 }
 
-/* Animated background pattern */
-.animated-bg {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	pointer-events: none;
-	z-index: -1;
-	background-image: radial-gradient(
-			circle at 25% 25%,
-			rgba(0, 217, 255, 0.05) 0%,
-			transparent 50%
-		),
-		radial-gradient(
-			circle at 75% 75%,
-			rgba(183, 148, 246, 0.05) 0%,
-			transparent 50%
-		);
-	animation: float 20s ease-in-out infinite;
-	/* Fix mobile performance and positioning */
-	will-change: transform;
-	transform: translateZ(0);
-	-webkit-transform: translateZ(0);
+/* ── Focus ── */
+:focus-visible {
+  outline: 2px solid #00aaff;
+  outline-offset: 2px;
 }
 
-/* Disable animations on mobile to improve performance */
-@media (max-width: 768px) {
-	.animated-bg {
-		animation: none;
-	}
-
-	/* Reduce motion for users who prefer it */
-	@media (prefers-reduced-motion: reduce) {
-		.animated-bg {
-			animation: none;
-		}
-	}
+/* ── Links ── */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-@keyframes float {
-	0%,
-	100% {
-		transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		transform: translateY(-20px) rotate(1deg);
-	}
+/* ── Line clamp ── */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* Modern scrollbar styling */
-::-webkit-scrollbar {
-	width: 8px;
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-::-webkit-scrollbar-track {
-	background: #1a1b23;
-	border-radius: 4px;
+/* ── Grid overlay ── */
+.grid-overlay {
+  background-image: radial-gradient(circle, rgba(30, 30, 50, 0.3) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-::-webkit-scrollbar-thumb {
-	background: linear-gradient(45deg, #00d9ff, #b794f6);
-	border-radius: 4px;
+/* ── Scan line ── */
+.scan-line::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 204, 136, 0.08), transparent);
+  animation: scan 8s linear infinite;
+  pointer-events: none;
+  z-index: 60;
 }
 
-::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(45deg, #00b8d4, #9f7aea);
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100vh);
+  }
 }
 
-/* Custom utility classes */
-.glass-effect {
-	background: rgba(26, 27, 35, 0.8);
-	backdrop-filter: blur(12px);
-	border: 1px solid rgba(45, 46, 63, 0.5);
+/* ── Section enter stagger ── */
+.section-enter {
+  animation: sectionEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.section-enter:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.section-enter:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.section-enter:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.section-enter:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.section-enter:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.section-enter:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.section-enter:nth-child(7) {
+  animation-delay: 0.7s;
 }
 
-.terminal-glow {
-	box-shadow: 0 0 20px rgba(0, 217, 255, 0.1),
-		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+@keyframes sectionEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.custom-hover-underline:hover {
-	text-decoration: underline;
-	text-decoration-color: #00d9ff !important;
-	text-decoration-thickness: 2px;
-	text-underline-offset: 4px;
-	transition: all 0.3s ease;
+/* ── Card hover glow ── */
+.card-hover {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
-.loader {
-	border-top-color: #00d9ff;
-	animation: spinner 1s linear infinite;
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 24px rgba(0, 204, 136, 0.08),
+    0 0 0 1px rgba(0, 204, 136, 0.1);
 }
 
-@keyframes spinner {
-	0% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(360deg);
-	}
+/* ── Glow text on hover ── */
+.glow-hover:hover {
+  text-shadow: 0 0 8px rgba(0, 204, 136, 0.4);
 }
 
-/* Matrix rain effect with modern styling */
-.rain {
-	position: absolute;
-	top: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 2rem;
-	letter-spacing: 0.2rem;
-	color: #00d9ff;
-	animation: rain 2.5s linear infinite;
-	text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+/* ── Glitch hover effect ── */
+.glitch-hover {
+  position: relative;
 }
 
-@keyframes rain {
-	0% {
-		top: -100%;
-		opacity: 0;
-	}
-	10% {
-		opacity: 1;
-	}
-	90% {
-		opacity: 1;
-	}
-	100% {
-		top: 100%;
-		opacity: 0;
-	}
+.glitch-hover:hover {
+  animation: glitch-text 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-/* Terminal cursor animation */
-.typing-cursor {
-	display: inline-block;
-	width: 2px;
-	height: 1.2em;
-	background: #00d9ff;
-	animation: blink 1s infinite;
+@keyframes glitch-text {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    transform: translate(2px, -1px);
+  }
+  60% {
+    transform: translate(-1px, -1px);
+  }
+  80% {
+    transform: translate(1px, 1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* ── Glitch flicker (for Konami easter egg etc.) ── */
+.glitch-active {
+  animation: glitch-flicker 0.15s infinite;
+}
+
+@keyframes glitch-flicker {
+  0% {
+    opacity: 1;
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    opacity: 0.8;
+    transform: translate(-1px, 1px);
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(1px, -1px);
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    opacity: 0.9;
+    transform: translate(-1px, -1px);
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* ── CRT / vignette overlay for Konami ── */
+.crt-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.crt-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.08) 0px,
+    rgba(0, 0, 0, 0.08) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ── Achievement unlock flash ── */
+.achievement-unlock {
+  animation: achievementFlash 0.5s ease-out;
+}
+
+@keyframes achievementFlash {
+  0% {
+    background-color: rgba(0, 204, 136, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* ── XP bar fill animation ── */
+.xp-fill {
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Terminal cursor blink ── */
+.cursor-blink {
+  animation: blink 1s step-start infinite;
 }
 
 @keyframes blink {
-	0%,
-	50% {
-		opacity: 1;
-	}
-	51%,
-	100% {
-		opacity: 0;
-	}
-}
-
-/* Smooth transitions for all interactive elements */
-* {
-	transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-}
-
-/* Enhanced responsive design */
-@media (max-width: 768px) {
-	html {
-		/* Fix iOS viewport units */
-		height: -webkit-fill-available;
-	}
-
-	body {
-		/* Ensure proper mobile viewport */
-		min-height: 100vh;
-		min-height: -webkit-fill-available;
-		font-size: 16px; /* Prevent iOS zoom on form inputs */
-	}
-
-	.glass-effect {
-		margin: 0 12px;
-		padding: 12px;
-	}
-
-	.terminal {
-		margin: 0.5rem;
-		height: 60vh;
-		padding: 12px;
-		width: calc(100vw - 1rem);
-		max-width: calc(100vw - 1rem);
-		box-sizing: border-box;
-	}
-
-	.terminal-bar {
-		padding: 8px 12px;
-		margin: -12px -12px 12px -12px;
-	}
-
-	/* Fix container overflow on mobile */
-	.container {
-		max-width: 100%;
-		padding-left: 16px;
-		padding-right: 16px;
-	}
-
-	/* Ensure content doesn't overflow */
-	* {
-		max-width: 100%;
-		box-sizing: border-box;
-	}
-}
-
-@media (max-width: 640px) {
-	.glass-effect {
-		margin: 0 8px;
-		padding: 8px;
-	}
-
-	.terminal {
-		margin: 0.25rem;
-		height: 55vh;
-		padding: 8px;
-		width: calc(100vw - 0.5rem);
-		max-width: calc(100vw - 0.5rem);
-	}
-
-	.terminal-bar {
-		padding: 6px 8px;
-		margin: -8px -8px 8px -8px;
-	}
-
-	/* Mobile typography adjustments */
-	.heading-xl {
-		font-size: clamp(2rem, 6vw, 4rem);
-	}
-
-	.heading-lg {
-		font-size: clamp(1.5rem, 4vw, 2.5rem);
-	}
-
-	.heading-md {
-		font-size: clamp(1.25rem, 3vw, 1.75rem);
-	}
-}
-
-@media (max-width: 480px) {
-	body {
-		font-size: 16px; /* Prevent iOS zoom */
-	}
-
-	.tabs {
-		flex-direction: column;
-		gap: 4px;
-		width: 100%;
-	}
-
-	.tab {
-		padding: 8px 16px;
-		font-size: 14px;
-		width: 100%;
-		text-align: center;
-	}
-
-	/* Fix button spacing on small screens */
-	.modern-button {
-		padding: 10px 20px;
-		font-size: 14px;
-		width: 100%;
-		margin-bottom: 8px;
-	}
-
-	/* Ensure cards don't overflow */
-	.tech-card {
-		margin: 0 4px;
-		padding: 8px;
-	}
-}
-
-/* iPhone specific fixes */
-@media screen and (max-width: 430px) {
-	/* iPhone 14 Pro Max and similar */
-	.container {
-		padding-left: 12px;
-		padding-right: 12px;
-	}
-
-	/* Fix text wrapping issues */
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		word-wrap: break-word;
-		hyphens: auto;
-	}
-
-	/* Ensure proper spacing */
-	.space-y-modern > * + * {
-		margin-top: 1rem;
-	}
-
-	.space-y-modern-lg > * + * {
-		margin-top: 1.5rem;
-	}
-}
-
-/* Selection styling */
-::selection {
-	background: rgba(0, 217, 255, 0.3);
-	color: #e2e8f0;
-}
-
-/* Focus styles */
-button:focus,
-a:focus,
-input:focus,
-textarea:focus {
-	outline: 2px solid #00d9ff;
-	outline-offset: 2px;
-}
-
-/* Modern button styles */
-.btn-primary {
-	background: linear-gradient(135deg, #00d9ff, #b794f6);
-	color: white;
-	padding: 12px 24px;
-	border-radius: 8px;
-	font-weight: 500;
-	transition: all 0.3s ease;
-	border: none;
-	cursor: pointer;
-}
-
-.btn-primary:hover {
-	box-shadow: 0 10px 25px rgba(0, 217, 255, 0.25);
-	transform: scale(1.05);
-}
-
-.btn-secondary {
-	background: #1a1b23;
-	border: 1px solid #2d2e3f;
-	color: #e2e8f0;
-	padding: 12px 24px;
-	border-radius: 8px;
-	font-weight: 500;
-	transition: all 0.3s ease;
-	cursor: pointer;
-}
-
-.btn-secondary:hover {
-	background: #2d2e3f;
-	border-color: #00d9ff;
-}
-
-/* Modern Big Tech Style Components */
-.glass-morphism {
-	background: rgba(26, 27, 35, 0.8);
-	backdrop-filter: blur(20px);
-	border: 1px solid rgba(45, 46, 63, 0.5);
-	border-radius: 16px;
-	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-		0 0 0 1px rgba(255, 255, 255, 0.05),
-		inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.neo-brutalist-card {
-	background: var(--terminal-surface);
-	border: 2px solid var(--terminal-primary);
-	border-radius: 12px;
-	box-shadow: 8px 8px 0 var(--terminal-primary), 0 0 20px var(--glow-primary);
-	transform: translateZ(0);
-	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.neo-brutalist-card:hover {
-	transform: translate(-4px, -4px);
-	box-shadow: 12px 12px 0 var(--terminal-primary), 0 0 30px var(--glow-primary);
-}
-
-.modern-gradient-text {
-	background: linear-gradient(
-		135deg,
-		var(--terminal-primary),
-		var(--terminal-secondary)
-	);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	font-weight: 700;
-}
-
-.cyber-grid {
-	background-image: linear-gradient(
-			rgba(0, 217, 255, 0.1) 1px,
-			transparent 1px
-		),
-		linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
-	background-size: 20px 20px;
-	opacity: 0.3;
-}
-
-.terminal-glow-intense {
-	box-shadow: 0 0 20px var(--glow-primary), 0 0 40px var(--glow-primary),
-		inset 0 0 20px rgba(0, 217, 255, 0.1);
-}
-
-.modern-button {
-	position: relative;
-	background: linear-gradient(
-		135deg,
-		var(--terminal-primary),
-		var(--terminal-secondary)
-	);
-	border: none;
-	border-radius: 12px;
-	color: var(--terminal-bg);
-	font-weight: 600;
-	font-family: "Inter", sans-serif;
-	padding: 12px 32px;
-	cursor: pointer;
-	overflow: hidden;
-	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	box-shadow: 0 4px 16px var(--glow-primary);
-}
-
-.modern-button::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: -100%;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(
-		90deg,
-		transparent,
-		rgba(255, 255, 255, 0.2),
-		transparent
-	);
-	transition: left 0.5s ease;
-}
-
-.modern-button:hover::before {
-	left: 100%;
-}
-
-.modern-button:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 8px 25px var(--glow-primary);
-}
-
-.modern-button:active {
-	transform: translateY(0);
-}
-
-/* Modern Typography */
-.heading-xl {
-	font-size: clamp(3rem, 8vw, 6rem);
-	font-weight: 800;
-	line-height: 1.1;
-	letter-spacing: -0.02em;
-}
-
-.heading-lg {
-	font-size: clamp(2rem, 5vw, 3.5rem);
-	font-weight: 700;
-	line-height: 1.2;
-	letter-spacing: -0.01em;
-}
-
-.heading-md {
-	font-size: clamp(1.5rem, 3vw, 2.25rem);
-	font-weight: 600;
-	line-height: 1.3;
-}
-
-.text-code {
-	font-family: "JetBrains Mono", "Fira Code", monospace;
-	font-weight: 500;
-}
-
-/* Modern Animations */
-@keyframes float-subtle {
-	0%,
-	100% {
-		transform: translateY(0px);
-	}
-	50% {
-		transform: translateY(-10px);
-	}
-}
-
-@keyframes pulse-glow {
-	0%,
-	100% {
-		box-shadow: 0 0 20px var(--glow-primary);
-	}
-	50% {
-		box-shadow: 0 0 40px var(--glow-primary), 0 0 60px var(--glow-secondary);
-	}
-}
-
-@keyframes slide-in-bottom {
-	from {
-		opacity: 0;
-		transform: translateY(30px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes fade-in-scale {
-	from {
-		opacity: 0;
-		transform: scale(0.9);
-	}
-	to {
-		opacity: 1;
-		transform: scale(1);
-	}
-}
-
-.animate-float {
-	animation: float-subtle 6s ease-in-out infinite;
-}
-.animate-pulse-glow {
-	animation: pulse-glow 3s ease-in-out infinite;
-}
-.animate-slide-in {
-	animation: slide-in-bottom 0.6s ease-out;
-}
-.animate-fade-in-scale {
-	animation: fade-in-scale 0.5s ease-out;
-}
-
-/* Modern spacing utilities */
-.space-y-modern > * + * {
-	margin-top: 2rem;
-}
-.space-y-modern-lg > * + * {
-	margin-top: 3rem;
-}
-
-/* Compact spacing utilities */
-.space-y-compact > * + * {
-	margin-top: 0.75rem;
-}
-.space-y-tight > * + * {
-	margin-top: 0.5rem;
-}
-.space-y-micro > * + * {
-	margin-top: 0.25rem;
-}
-
-/* Compact padding utilities */
-.p-compact {
-	padding: 0.75rem;
-}
-.px-compact {
-	padding-left: 0.75rem;
-	padding-right: 0.75rem;
-}
-.py-compact {
-	padding-top: 0.75rem;
-	padding-bottom: 0.75rem;
-}
-.p-micro {
-	padding: 0.5rem;
-}
-
-/* Tech-inspired visual effects */
-.cyber-border {
-	position: relative;
-	border: 1px solid rgba(0, 153, 204, 0.3);
-}
-
-.cyber-border::before {
-	content: "";
-	position: absolute;
-	top: -1px;
-	left: -1px;
-	right: -1px;
-	bottom: -1px;
-	background: linear-gradient(
-		45deg,
-		rgba(0, 153, 204, 0.5),
-		transparent 30%,
-		transparent 70%,
-		rgba(183, 148, 246, 0.5)
-	);
-	border-radius: inherit;
-	z-index: -1;
-	animation: border-flow 3s linear infinite;
-}
-
-@keyframes border-flow {
-	0% {
-		background-position: 0% 0%;
-	}
-	100% {
-		background-position: 200% 200%;
-	}
-}
-
-/* Floating elements effect */
-/* Simple floating elements without heavy animations */
-.floating-elements {
-	position: relative;
-}
-
-/* Simple gradient text without animation */
-.holo-text {
-	background: linear-gradient(45deg, #0099cc 0%, #b794f6 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-}
-
-/* Compact card design */
-.tech-card {
-	background: rgba(26, 27, 35, 0.8);
-	backdrop-filter: blur(20px);
-	border: 1px solid rgba(0, 153, 204, 0.2);
-	border-radius: 12px;
-	padding: 1rem;
-	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	position: relative;
-}
-
-.tech-card:hover {
-	transform: translateY(-4px);
-	border-color: rgba(0, 153, 204, 0.5);
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 153, 204, 0.2);
-}
-
-/* Compact section spacing */
-.section-compact {
-	padding: 2rem 0;
-}
-
-.section-micro {
-	padding: 1rem 0;
-}
-
-/* Mobile-specific utility classes */
-.mobile-safe {
-	padding-left: env(safe-area-inset-left);
-	padding-right: env(safe-area-inset-right);
-}
-
-.mobile-container {
-	width: 100%;
-	max-width: 100vw;
-	padding-left: max(16px, env(safe-area-inset-left));
-	padding-right: max(16px, env(safe-area-inset-right));
-	box-sizing: border-box;
-}
-
-/* Fix iOS viewport bugs */
-.full-height-mobile {
-	height: 100vh;
-	height: -webkit-fill-available;
-}
-
-/* Prevent horizontal scroll on mobile */
-.no-scroll-x {
-	overflow-x: hidden;
-	max-width: 100vw;
-}
-
-/* Fix text size on mobile Safari */
-.mobile-text {
-	-webkit-text-size-adjust: 100%;
-	text-size-adjust: 100%;
-}
-
-/* Fix touch targets for mobile */
-.touch-target {
-	min-height: 44px;
-	min-width: 44px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-/* Responsive grid that works on all devices */
-.responsive-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	gap: 1rem;
-	width: 100%;
-}
-
-@media (max-width: 480px) {
-	.responsive-grid {
-		grid-template-columns: 1fr;
-		gap: 0.75rem;
-	}
-}
-
-/* Fix flex layout issues on mobile */
-.mobile-flex {
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	width: 100%;
-}
-
-@media (min-width: 768px) {
-	.mobile-flex {
-		flex-direction: row;
-		align-items: center;
-	}
-}
-
-/* Fix common card layout issues */
-.card-mobile {
-	width: 100%;
-	max-width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	box-sizing: border-box;
-}
-
-@media (max-width: 640px) {
-	.card-mobile {
-		margin-left: 8px;
-		margin-right: 8px;
-		width: calc(100% - 16px);
-	}
-}
-
-/* Terminal-specific mobile fixes */
-.terminal {
-	/* Base terminal styles for all screens */
-	box-sizing: border-box;
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-	max-width: 100%;
-}
-
-/* Terminal content wrapper to prevent overflow */
-.terminal-content,
-.content-container {
-	width: 100%;
-	max-width: 100%;
-	overflow-x: auto;
-	overflow-y: auto;
-	box-sizing: border-box;
-}
-
-/* Terminal text should wrap properly */
-.terminal pre,
-.terminal code {
-	white-space: pre-wrap;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	max-width: 100%;
-}
-
-/* Fix HUD elements that might cause overflow */
-.hud-bottom-bar,
-.hud-side-left,
-.hud-side-right,
-.hud-scanner,
-.terminal-bar-simple {
-	max-width: 100%;
-	box-sizing: border-box;
-	overflow: hidden;
-}
-
-.hud-stats {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-	max-width: 100%;
-}
-
-.hud-stat {
-	flex-shrink: 1;
-	min-width: 0;
-	font-size: clamp(10px, 2vw, 14px);
-}
-
-/* Fix terminal on all mobile devices */
-@media (max-width: 768px) {
-	.terminal {
-		/* Ensure terminal never overflows */
-		width: 100% !important;
-		max-width: 100% !important;
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		left: 0;
-		right: 0;
-		/* Add safe margins */
-		margin: 8px auto;
-		/* Ensure it fits within viewport */
-		max-width: calc(100vw - 16px) !important;
-		min-width: 0;
-	}
-
-	.terminal-wrapper {
-		width: 100%;
-		max-width: 100%;
-		padding: 0 8px;
-		box-sizing: border-box;
-	}
-
-	/* Simplify HUD on mobile */
-	.hud-side-left,
-	.hud-side-right {
-		display: none; /* Hide side elements on mobile */
-	}
-
-	.hud-bottom-bar {
-		padding: 4px;
-		font-size: 10px;
-	}
-
-	.hud-stats {
-		flex-direction: column;
-		gap: 2px;
-	}
-
-	.activity-bars {
-		display: none; /* Hide complex animations on mobile */
-	}
-}
-
-@media (max-width: 640px) {
-	.terminal {
-		/* Even more restrictive on small screens */
-		width: 100% !important;
-		max-width: calc(100vw - 16px) !important;
-		margin: 4px auto !important;
-		padding: 6px !important;
-	}
-
-	.terminal-bar,
-	.terminal-bar-simple {
-		padding: 4px 6px !important;
-		margin: -6px -6px 6px -6px !important;
-		font-size: 12px;
-		overflow: hidden;
-	}
-
-	.window-controls-group {
-		display: flex;
-		align-items: center;
-		gap: 4px;
-		max-width: 100%;
-	}
-
-	.system-info-simple {
-		font-size: 10px;
-	}
-
-	.info-items {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 4px;
-	}
-}
-
-@media (max-width: 430px) {
-	.terminal {
-		/* iPhone and small phone specific */
-		width: 100% !important;
-		max-width: calc(100vw - 12px) !important;
-		margin: 2px auto !important;
-		padding: 4px !important;
-		font-size: 12px;
-	}
-
-	.terminal-content,
-	.content-container {
-		font-size: 11px;
-		line-height: 1.3;
-	}
-
-	/* Hide complex HUD elements on very small screens */
-	.hud-corners,
-	.hud-status-panels {
-		display: none;
-	}
-
-	.terminal-bar-simple {
-		padding: 2px 4px !important;
-		font-size: 10px;
-	}
-}
-
-/* Critical mobile container fixes */
-/* Ensure all main containers respect viewport bounds */
-.container,
-.mx-auto,
-[class*="container"] {
-	max-width: 100vw;
-	overflow-x: hidden;
-	box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-	.container,
-	.mx-auto,
-	[class*="container"] {
-		padding-left: 12px !important;
-		padding-right: 12px !important;
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		width: 100% !important;
-		max-width: 100vw !important;
-	}
-}
-
-/* Fix any flex layouts that might cause overflow */
-.flex-grow,
-.flex-1 {
-	min-width: 0;
-	overflow: hidden;
-}
-
-/* Ensure main content areas are properly contained */
-main,
-.main-content {
-	max-width: 100vw;
-	overflow-x: hidden;
-}
-
-@media (max-width: 768px) {
-	main,
-	.main-content {
-		padding-left: 8px;
-		padding-right: 8px;
-	}
-}
-
-/* Fix space-y utilities on mobile */
-@media (max-width: 640px) {
-	.space-y-12 > * + * {
-		margin-top: 1.5rem !important;
-	}
-
-	.space-y-8 > * + * {
-		margin-top: 1rem !important;
-	}
-
-	.py-8 {
-		padding-top: 1rem !important;
-		padding-bottom: 1rem !important;
-	}
-
-	.px-4 {
-		padding-left: 8px !important;
-		padding-right: 8px !important;
-	}
-}
-
-/* Debug helper - uncomment to see overflow issues */
-/*
-@media (max-width: 768px) {
-	* {
-		outline: 1px solid red !important;
-	}
-	
-	.terminal {
-		outline: 2px solid yellow !important;
-	}
-}
-*/
-
-/* Work experience mobile fixes - company names and content */
-.work-experience-container {
-	width: 100%;
-	max-width: 100%;
-	overflow-x: hidden;
-	box-sizing: border-box;
-}
-
-/* Fix long company names getting cut off */
-.company-name,
-[class*="companyName"] {
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	hyphens: auto;
-	max-width: 100%;
-	white-space: normal;
-}
-
-/* Work experience card layouts */
-.work-card,
-.career-timeline,
-.terminal-card {
-	width: 100%;
-	max-width: 100%;
-	box-sizing: border-box;
-	overflow: hidden;
-}
-
-/* Fix grid layouts in work section */
-.career-stats-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-	gap: 0.75rem;
-	width: 100%;
-}
-
-@media (max-width: 768px) {
-	/* Company name specific fixes */
-	.company-name,
-	[class*="companyName"] {
-		font-size: 0.9rem;
-		line-height: 1.3;
-		display: block;
-		width: 100%;
-	}
-
-	/* Job title and company layout fixes */
-	.work-header,
-	.job-info {
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
-		width: 100%;
-	}
-
-	/* Career timeline adjustments */
-	.career-timeline {
-		margin: 0 4px;
-		padding: 12px;
-	}
-
-	.terminal-card {
-		margin: 8px 0;
-		padding: 12px;
-	}
-
-	/* Stats grid mobile layout */
-	.career-stats-grid {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 0.5rem;
-	}
-
-	.stat-card {
-		padding: 8px;
-		font-size: 0.8rem;
-	}
-
-	/* Tech badges mobile layout */
-	.tech-badge {
-		font-size: 0.65rem;
-		padding: 0.2rem 0.5rem;
-		margin: 2px;
-	}
-}
-
-@media (max-width: 640px) {
-	/* Even smaller screens - stack everything vertically */
-	.work-item-header {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 8px;
-		width: 100%;
-	}
-
-	/* Job title first, then company name on new line */
-	.job-title,
-	[class*="jobTitle"] {
-		font-size: 0.9rem;
-		font-weight: 600;
-		width: 100%;
-		margin-bottom: 2px;
-		order: 1;
-	}
-
-	/* Company names get full width on new line */
-	.company-name,
-	[class*="companyName"] {
-		font-size: 0.85rem;
-		font-weight: 500;
-		color: #0099cc;
-		width: 100%;
-		margin-bottom: 4px;
-		order: 2;
-		display: block;
-		margin-top: 4px;
-	}
-
-	/* Years worked */
-	.years-worked,
-	[class*="yearsWorked"] {
-		font-size: 0.75rem;
-		color: #94a3b8;
-		width: 100%;
-		order: 3;
-	}
-
-	/* Career stats single column on very small screens */
-	.career-stats-grid {
-		grid-template-columns: 1fr;
-		gap: 0.5rem;
-	}
-
-	/* Work description text */
-	.work-description,
-	.job-description {
-		font-size: 0.8rem;
-		line-height: 1.4;
-		margin-top: 8px;
-	}
-}
-
-@media (max-width: 430px) {
-	/* iPhone and very small phones */
-	.company-name,
-	[class*="companyName"] {
-		font-size: 0.8rem;
-		line-height: 1.2;
-		font-weight: 700;
-		color: #00d9ff;
-		text-shadow: 0 0 5px rgba(0, 217, 255, 0.3);
-	}
-
-	.job-title,
-	[class*="jobTitle"] {
-		font-size: 0.85rem;
-		line-height: 1.3;
-	}
-
-	.years-worked,
-	[class*="yearsWorked"] {
-		font-size: 0.7rem;
-	}
-
-	/* Make tech stack more compact */
-	.tech-stack-container {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 3px;
-		margin-top: 6px;
-	}
-
-	.tech-badge {
-		font-size: 0.6rem;
-		padding: 0.15rem 0.4rem;
-		border-radius: 4px;
-	}
-
-	/* Ensure work cards don't overflow */
-	.work-card,
-	.terminal-card {
-		margin: 4px 0;
-		padding: 8px;
-		width: 100%;
-		max-width: 100%;
-	}
-}
-
-/* Additional mobile layout fixes for work experience */
-@media (max-width: 768px) {
-	/* Force all work-related flex containers to stack vertically */
-	.work-container .flex.items-center,
-	[class*="work"] .flex.items-center {
-		flex-direction: column !important;
-		align-items: flex-start !important;
-		width: 100%;
-	}
-
-	/* Ensure company names are fully visible */
-	span:contains("@"),
-	.company-display {
-		display: block !important;
-		width: 100% !important;
-		margin-top: 4px !important;
-		margin-bottom: 4px !important;
-		font-size: 0.9rem !important;
-		line-height: 1.3 !important;
-		word-break: break-word !important;
-	}
-}
-
-@media (max-width: 640px) {
-	/* More aggressive fixes for small screens */
-	.grid.grid-cols-2 {
-		grid-template-columns: 1fr !important;
-		gap: 8px !important;
-	}
-
-	.md\\:grid-cols-4 {
-		grid-template-columns: repeat(2, 1fr) !important;
-	}
-
-	/* Text size adjustments */
-	.text-2xl {
-		font-size: 1.25rem !important;
-	}
-
-	.text-sm {
-		font-size: 0.75rem !important;
-	}
-
-	/* Padding adjustments */
-	.p-4 {
-		padding: 8px !important;
-	}
-
-	.p-6 {
-		padding: 12px !important;
-	}
-
-	/* Work experience specific container fixes */
-	.space-y-4 > * + * {
-		margin-top: 8px !important;
-	}
-
-	.space-y-6 > * + * {
-		margin-top: 12px !important;
-	}
-}
-
-@media (max-width: 430px) {
-	/* iPhone specific - ultra compact layout */
-	.grid {
-		grid-template-columns: 1fr !important;
-		gap: 6px !important;
-	}
-
-	.text-center {
-		text-align: left !important;
-	}
-
-	/* Make sure all text is readable */
-	.font-mono {
-		font-size: 0.7rem !important;
-		line-height: 1.2 !important;
-	}
-
-	/* Compact spacing */
-	.space-y-2 > * + * {
-		margin-top: 4px !important;
-	}
-
-	.mb-2 {
-		margin-bottom: 4px !important;
-	}
-
-	.mb-4 {
-		margin-bottom: 6px !important;
-	}
-
-	.mb-6 {
-		margin-bottom: 8px !important;
-	}
-}
-
-/* Debug helper for work section - uncomment to see layout issues */
-/*
-@media (max-width: 768px) {
-	[class*="work"] {
-		outline: 1px solid blue !important;
-	}
-	
-	.flex {
-		outline: 1px solid red !important;
-	}
-	
-	span:contains('@') {
-		background-color: yellow !important;
-		color: black !important;
-	}
-}
-*/
-
-/* React component specific mobile fixes for work experience layout */
-@media (max-width: 640px) {
-	/* Target the specific structure from WorkExp.tsx - force vertical stacking */
-	.flex.items-center.space-x-3 {
-		flex-direction: column !important;
-		align-items: flex-start !important;
-		gap: 6px !important;
-		width: 100% !important;
-	}
-
-	.flex.items-center.space-x-3 > * {
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		width: 100% !important;
-	}
-
-	/* Order of elements: 1. feat: label, 2. job title, 3. company name */
-	.text-yellow-400.font-mono {
-		font-size: 0.75rem !important;
-		order: 1 !important;
-		margin-bottom: 2px !important;
-		width: 100% !important;
-	}
-
-	/* Job title - make it prominent and first */
-	.text-white.font-semibold {
-		font-size: 0.9rem !important;
-		font-weight: 600 !important;
-		width: 100% !important;
-		order: 2 !important;
-		display: block !important;
-		margin-bottom: 0 !important;
-	}
-
-	/* Company name with @ symbol - on new line */
-	.text-terminal-accent {
-		font-size: 0.85rem !important;
-		font-weight: 500 !important;
-		color: #0099cc !important;
-		width: 100% !important;
-		order: 3 !important;
-		display: block !important;
-		margin-top: 4px !important;
-		word-wrap: break-word !important;
-		max-width: 100% !important;
-		line-height: 1.3 !important;
-	}
-
-	/* Years worked and status info */
-	.flex.items-center.space-x-4.text-sm.text-gray-400 {
-		flex-direction: column !important;
-		align-items: flex-start !important;
-		gap: 2px !important;
-		margin-top: 6px !important;
-		order: 4 !important;
-		width: 100% !important;
-	}
-
-	.flex.items-center.space-x-4.text-sm.text-gray-400 > * {
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		width: 100% !important;
-	}
-
-	/* Tech stack container */
-	.flex.flex-wrap.gap-2 {
-		margin-top: 8px !important;
-		order: 5 !important;
-		width: 100% !important;
-	}
-
-	/* Override all horizontal spacing on mobile */
-	.space-x-3 > * + *,
-	.space-x-4 > * + * {
-		margin-left: 0 !important;
-	}
-}
-
-/* Even smaller phones - ultra compact */
-@media (max-width: 430px) {
-	.text-white.font-semibold {
-		font-size: 0.85rem !important;
-	}
-
-	.text-terminal-accent {
-		font-size: 0.8rem !important;
-		margin-top: 2px !important;
-	}
-
-	.text-yellow-400.font-mono {
-		font-size: 0.7rem !important;
-	}
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── Data stream effect on borders ── */
+.data-stream {
+  background-size: 200% 100%;
+  animation: dataFlow 3s linear infinite;
+}
+
+@keyframes dataFlow {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .scan-line::after {
+    display: none;
+  }
+
+  .section-enter {
+    animation: none;
+    opacity: 1;
+  }
+
+  .glitch-hover:hover,
+  .glitch-active {
+    animation: none;
+    transform: none;
+    filter: none;
+  }
 }

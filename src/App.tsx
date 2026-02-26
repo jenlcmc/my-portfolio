@@ -1,67 +1,69 @@
-import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Navigation from './components/NavBar/NavBar';
-import Home from './pages/Home';
-import About from './pages/About';
-import Projects from './pages/Projects';
-import Education from './pages/Education';
-import Work from './pages/Work';
-import Teaching from './pages/Teaching';
+import { useState, useCallback } from 'react';
+import Nav from './components/Nav';
 import Footer from './components/Footer';
-import Spinner from './hooks/Spinner';
+import Starfield from './components/Starfield';
+import Ticker from './components/Ticker';
+import BootSequence from './components/BootSequence';
+import CommandTerminal from './components/CommandTerminal';
+import ClickSparks from './components/ClickSparks';
+import Hero from './sections/Hero';
+import About from './sections/About';
+import Experience from './sections/Experience';
+import Education from './sections/Education';
+import Projects from './sections/Projects';
+import { useKonamiCode } from './hooks/useKonamiCode';
 
-import './styles/index.css';
+export default function App() {
+  const [booted, setBooted] = useState(false);
+  const [terminalOpen, setTerminalOpen] = useState(false);
+  const konami = useKonamiCode();
 
-const App = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const renderMainContent = () => (
-    <div className="relative">
-      <main className="flex-grow container mx-auto px-2 sm:px-4 py-4 sm:py-8 space-y-8 sm:space-y-12">
-        <div id="home" className="animate-slide-up">
-          <Home />
-        </div>
-        <div id="about" className="animate-slide-up" style={{ animationDelay: '0.1s' }}>
-          <About />
-        </div>
-        <div id="education" className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
-          <Education />
-        </div>
-        <div id="work" className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
-          <Work />
-        </div>
-        <div id="projects" className="animate-slide-up" style={{ animationDelay: '0.4s' }}>
-          <Projects />
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
+  const onBootComplete = useCallback(() => setBooted(true), []);
+  const openTerminal = useCallback(() => setTerminalOpen(true), []);
+  const closeTerminal = useCallback(() => setTerminalOpen(false), []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-terminal-bg to-terminal-surface text-terminal-text relative">
-      <div className="animated-bg" />
-      {loading ? (
-        <Spinner />
-      ) : (
-        <div className="animate-fade-in relative z-10">
-          <Navigation />
-          <Routes>
-            <Route path="/" element={renderMainContent()} />
-            <Route path="/teaching" element={<Teaching />} />
-          </Routes>
-        </div>
-      )}
-    </div>
-  );
-};
+    <>
+      {/* Boot sequence */}
+      {!booted && <BootSequence onComplete={onBootComplete} />}
 
-export default App;
+      <div
+        className={`min-h-screen bg-base text-txt font-mono scan-line ${
+          konami ? 'glitch-active crt-overlay' : ''
+        }`}
+      >
+        <Starfield />
+        <ClickSparks />
+
+        <div className="relative z-10 grid-overlay min-h-screen">
+          {/* Bloomberg-style ticker */}
+          <div className="fixed top-12 left-0 right-0 z-40">
+            <Ticker />
+          </div>
+
+          <Nav onOpenTerminal={openTerminal} />
+
+          <main className="max-w-5xl mx-auto px-4 pt-28 pb-8">
+            <Hero />
+            <About />
+            <Experience />
+            <Education />
+            <Projects />
+          </main>
+
+          <Footer />
+        </div>
+
+        {/* Command terminal overlay */}
+        <CommandTerminal open={terminalOpen} onClose={closeTerminal} />
+
+        {/* Konami code notification */}
+        {konami && (
+          <div className="fixed bottom-6 right-6 z-[95] px-4 py-2 border border-term-green rounded bg-base-panel/90 backdrop-blur-sm text-term-green text-xs animate-fade-in">
+            CHEAT CODE ACTIVATED -- CRT MODE
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
