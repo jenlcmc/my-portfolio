@@ -54,7 +54,7 @@ const SKILLS_TEXT = [
   '│ Git  Docker  AWS  PostgreSQL         │',
   '│ MongoDB  Linux  Jira  Figma          │',
   '├─ Domains ────────────────────────────┤',
-  '│ Full-Stack  Cloud  ML  Data  CI/CD   │',
+  '│ SWE  Cloud  ML  Data  CI/CD   │',
   '└───────────────────────────────────────┘',
 ];
 

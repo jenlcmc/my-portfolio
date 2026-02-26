@@ -16,7 +16,8 @@ export interface Degree {
 export const grad: Degree = {
   degree: 'M.S. Computer Science',
   school: 'University of Nevada, Las Vegas',
-  period: '2024 -- Present',
+  period: '2025 -- Present',
+  gpa: '3.8',
   current: true,
   semesters: [
     {
@@ -26,6 +27,18 @@ export const grad: Degree = {
         'CS 657: Database Management Systems',
         'CS 677: Analysis of Algorithms',
       ],
+    },
+    {
+      label: 'Fall 2025',
+      courses: [
+        'CS 722: Advanced Machine Learning',
+        'CS 689: Autonomous Racing Car',
+        'ME 657: Robotics Mentoring 1',
+      ],
+    },
+    {
+      label: 'Spring 2026',
+      courses: ['CS 689: Deep Learning', 'CS 789: OCR & NLP', 'ME 667: Robotics Mentoring 2'],
     },
   ],
 };

@@ -10,7 +10,7 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     company: 'University of Nevada, Las Vegas',
-    title: 'Student System Administrator/Engineer, Level 1',
+    title: 'Student System Administrator/Engineer',
     period: 'Jun 2025 -- Present',
     current: true,
     description: [
@@ -20,10 +20,29 @@ export const experiences: Experience[] = [
     tech: ['Python', 'GitLab', 'Ansible', 'Terraform', 'Packer', 'AWS', 'Azure'],
   },
   {
+    company: 'University of Nevada, Las Vegas',
+    title: 'High School Robotics Mentor',
+    period: 'Jan 2026 -- Present',
+    current: true,
+    description: [
+      'Mentor programming team in developing autonomous and teleoperated robot control systems for FRC competitions',
+      'Teach sensor integration, motor control, path planning, and vision processing while fostering problem-solving and collaboration skills.',
+    ],
+    tech: [
+      'C++',
+      'GitHub',
+      'ROS',
+      'FRC Control System',
+      'Path Planning Algorithms',
+      'Computer Vision',
+      'PID Control',
+    ],
+  },
+  {
     company: 'Batchl',
     title: 'Project Engineer -- MVP Development Intern',
-    period: 'May 2025 -- Present',
-    current: true,
+    period: 'May 2025 -- August 2025',
+    current: false,
     description: [
       'Developing a mobile-first MVP by translating Figma designs into a functional application using React Native and Python.',
       'Collaborating directly with the founder to define product vision, contribute to the development roadmap, and implement features in a lean environment.',

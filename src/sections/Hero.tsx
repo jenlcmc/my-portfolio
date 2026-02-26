@@ -80,7 +80,7 @@ export default function Hero() {
 
         {/* Quick data panel */}
         <div className="mt-6 p-3 border border-line/50 rounded bg-base-surface/30 inline-block">
-          <DataLine label="class" value="Full-Stack Engineer" />
+          <DataLine label="class" value="SWE" />
           <DataLine label="level" value="Graduate Student" />
           <DataLine label="location" value="Las Vegas, NV" />
           <DataLine label="status" value="Available for opportunities" />

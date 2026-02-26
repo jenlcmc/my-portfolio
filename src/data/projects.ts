@@ -71,28 +71,4 @@ export const projects: Project[] = [
     github: 'https://github.com/jenlcmc/Alien_Invasion',
     status: 'complete',
   },
-  {
-    title: 'Unit Converter (C++)',
-    description:
-      'Converts between height, mass, number systems (decimal/hex/binary), Roman numerals, and temperature scales. Menu-driven CLI tool.',
-    tech: ['C++', 'C', 'Makefile'],
-    github: 'https://github.com/jenlcmc/convert',
-    status: 'complete',
-  },
-  {
-    title: 'Simple Cipher (C++)',
-    description:
-      'Three cipher implementations: Caesar, Vigenere, and Substitution. Personal project for learning cryptography basics.',
-    tech: ['C++', 'Makefile'],
-    github: 'https://github.com/jenlcmc/cipher',
-    status: 'complete',
-  },
-  {
-    title: 'Code Breaking / Mastermind',
-    description:
-      'Mastermind board game with save/load functionality. Guess a random combination of 6 colors within 6 attempts. Supports game state persistence.',
-    tech: ['C++', 'Makefile'],
-    github: 'https://github.com/jenlcmc/Code-Breaking-Game',
-    status: 'complete',
-  },
 ];

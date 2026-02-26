@@ -8,7 +8,15 @@ const SKILLS: { category: string; items: string[] }[] = [
   },
   {
     category: 'Frameworks',
-    items: ['React', 'Node.js', 'Spring Boot', 'Flask', 'Tailwind CSS', 'Next.js'],
+    items: [
+      'React/Native',
+      'Node.js',
+      'Spring Boot',
+      'Flask',
+      'Tailwind CSS',
+      'Next.js',
+      'Angular',
+    ],
   },
   {
     category: 'Tools',
@@ -16,7 +24,7 @@ const SKILLS: { category: string; items: string[] }[] = [
   },
   {
     category: 'Domains',
-    items: ['Full-Stack Dev', 'Cloud Computing', 'Machine Learning', 'Data Analytics', 'CI/CD'],
+    items: ['SWE', 'Cloud Computing', 'Machine Learning', 'Data Analytics', 'CI/CD'],
   },
 ];
 
@@ -44,7 +52,7 @@ function ClassBadge() {
   return (
     <div className="inline-flex items-center gap-2 px-3 py-1 border border-term-cyan/30 rounded bg-term-cyan/5 text-[10px] tracking-wider uppercase text-term-cyan mb-4">
       <span className="w-1.5 h-1.5 rounded-full bg-term-cyan animate-pulse-slow" />
-      class: full-stack engineer
+      class: SWE
     </div>
   );
 }
@@ -59,11 +67,15 @@ export default function About() {
           <ClassBadge />
 
           <p className="text-txt leading-relaxed text-sm">
-            I am a software engineer and computer science graduate student at Kennesaw State
-            University. I enjoy building tools that are practical, well-structured, and pleasant to
-            use. Outside of coding, I am into gaming, music, and learning about systems that make
-            things work under the hood. I care about writing clean, maintainable code and
-            continuously improving my craft.
+            I am a computer science graduate student at Univeristy of Nevada, Las Vegas and also
+            currently student system enginneering. I enjoy building tools that are practical,
+            well-structured, and pleasant to use. Outside of coding, I am into gaming, music, and
+            learning about systems that make things work under the hood. Feel free to explore my
+            portfolio and reach out if you want to connect!
+          </p>
+          <br />
+          <p className="text-txt leading-relaxed text-sm">
+            &quot;I used to be an adventurer like you, then I took a code to the knee.&quot;
           </p>
 
           {/* Skill inventory */}
