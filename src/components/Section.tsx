@@ -1,3 +1,5 @@
+import DecryptText from './DecryptText';
+
 interface SectionProps {
   id: string;
   label: string;
@@ -12,7 +14,9 @@ export default function Section({ id, label, children }: SectionProps) {
           <span className="block w-2.5 h-2.5 rounded-full bg-[#ff5f57]" aria-hidden="true" />
           <span className="block w-2.5 h-2.5 rounded-full bg-[#febc2e]" aria-hidden="true" />
           <span className="block w-2.5 h-2.5 rounded-full bg-[#28c840]" aria-hidden="true" />
-          <span className="ml-2 text-txt-dim text-xs uppercase tracking-wider">{label}</span>
+          <span className="ml-2 text-txt-dim text-xs uppercase tracking-wider">
+            <DecryptText text={label} speed={35} />
+          </span>
           <span className="ml-auto text-[10px] text-txt-dim/50 hidden sm:inline">
             [{id.toUpperCase()}]
           </span>

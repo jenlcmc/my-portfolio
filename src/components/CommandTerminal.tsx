@@ -1,8 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useTheme, THEME_META, type ThemeName } from '../contexts/ThemeContext';
+import { useAchievements } from '../contexts/AchievementContext';
+import { useWarp } from '../contexts/WarpContext';
+import { RARITY_COLOR } from '../data/achievements';
 
 interface CommandTerminalProps {
   open: boolean;
   onClose: () => void;
+  onOpenInventory: () => void;
+  onTogglePanel: () => void;
 }
 
 interface HistoryEntry {
@@ -16,26 +22,30 @@ const HELP_TEXT = [
   'Available commands:',
   '',
   '  help              -- show this help',
-  '  goto <section>    -- navigate to section',
+  '  goto <section>    -- warp to section',
   '  ls                -- list sections',
   '  whoami            -- about me',
   '  skills            -- list skills',
   '  status            -- system status',
   '  cat resume        -- open resume link',
   '  neofetch          -- system info',
+  '  achievements      -- list achievements',
+  '  inventory         -- open inventory',
+  '  theme [name]      -- view or switch theme',
+  '  panel             -- toggle side panel',
   '  clear             -- clear terminal',
   '  exit / q          -- close terminal',
   '',
   'Sections: hero, about, experience, education, projects',
 ];
 
-const NEOFETCH = [
+const NEOFETCH_TEMPLATE = [
   '        ╭──────────╮',
   '        │  uyen@dev │',
   '        ╰──────────╯',
   '   ██╗   ██╗╔╦╗      OS: Portfolio v3.0',
   '   ██║   ██║ ║║      Shell: React 18 + TS',
-  '   ██║   ██║ ║║      Theme: Cyberdeck Dark',
+  '   ██║   ██║ ║║      Theme: {{THEME}}',
   '   ╚██████╔╝ ║║      WM: Vite + Tailwind',
   '    ╚═════╝ ╚╩╝      Uptime: since 2020',
   '                      Packages: minimal',
@@ -58,13 +68,21 @@ const SKILLS_TEXT = [
   '└───────────────────────────────────────┘',
 ];
 
-export default function CommandTerminal({ open, onClose }: CommandTerminalProps) {
+export default function CommandTerminal({
+  open,
+  onClose,
+  onOpenInventory,
+  onTogglePanel,
+}: CommandTerminalProps) {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [cmdHistory, setCmdHistory] = useState<string[]>([]);
   const [historyIdx, setHistoryIdx] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { theme, setTheme } = useTheme();
+  const { allAchievements, isUnlocked, unlockedCount, total } = useAchievements();
+  const { triggerWarp } = useWarp();
 
   // Focus input when opened
   useEffect(() => {
@@ -110,9 +128,12 @@ export default function CommandTerminal({ open, onClose }: CommandTerminalProps)
         case 'cd': {
           const target = args[0]?.replace('~/', '').replace('/', '');
           if (target && SECTION_IDS.includes(target)) {
-            document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
-            output = [`Navigating to ${target}...`];
-            setTimeout(onClose, 500);
+            triggerWarp();
+            output = [`⚡ Warping to ${target}...`];
+            setTimeout(() => {
+              document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+              onClose();
+            }, 400);
           } else {
             output = [`Error: section "${args[0] || ''}" not found.`, 'Try: ls'];
           }
@@ -163,7 +184,7 @@ export default function CommandTerminal({ open, onClose }: CommandTerminalProps)
           break;
 
         case 'neofetch':
-          output = NEOFETCH;
+          output = NEOFETCH_TEMPLATE.map((l) => l.replace('{{THEME}}', THEME_META[theme].label));
           break;
 
         case 'clear':
@@ -197,6 +218,56 @@ export default function CommandTerminal({ open, onClose }: CommandTerminalProps)
           output = ['Hey there. Type "help" to see what I can do.'];
           break;
 
+        case 'achievements': {
+          output = [
+            `Achievements: ${unlockedCount}/${total}`,
+            '',
+            ...allAchievements.map((a) => {
+              const status = isUnlocked(a.id) ? '✓' : '✗';
+              return `  ${status} ${a.icon} ${a.title} [${a.rarity}] -- ${a.description}`;
+            }),
+          ];
+          break;
+        }
+
+        case 'inventory':
+          output = ['Opening inventory...'];
+          onOpenInventory();
+          setTimeout(onClose, 300);
+          break;
+
+        case 'theme': {
+          if (args[0]) {
+            const target = args[0] as ThemeName;
+            if (target in THEME_META) {
+              setTheme(target);
+              output = [`Theme switched to ${THEME_META[target].label}`];
+            } else {
+              output = [
+                `Unknown theme: "${args[0]}"`,
+                `Available: ${Object.keys(THEME_META).join(', ')}`,
+              ];
+            }
+          } else {
+            output = [
+              `Current theme: ${THEME_META[theme].label}`,
+              '',
+              ...Object.entries(THEME_META).map(
+                ([key, val]) =>
+                  `  ${key === theme ? '▸' : ' '} ${key.padEnd(12)} ${val.description}`,
+              ),
+              '',
+              'Usage: theme <name>',
+            ];
+          }
+          break;
+        }
+
+        case 'panel':
+          onTogglePanel();
+          output = ['Toggling side panel...'];
+          break;
+
         default:
           output = [`Command not found: ${command}`, 'Type "help" for available commands.'];
       }
@@ -205,7 +276,18 @@ export default function CommandTerminal({ open, onClose }: CommandTerminalProps)
       setCmdHistory((prev) => [cmd, ...prev]);
       setHistoryIdx(-1);
     },
-    [onClose],
+    [
+      onClose,
+      triggerWarp,
+      theme,
+      setTheme,
+      allAchievements,
+      isUnlocked,
+      unlockedCount,
+      total,
+      onOpenInventory,
+      onTogglePanel,
+    ],
   );
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

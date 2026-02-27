@@ -2,6 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ══════════════════════════════════════════════
+   THEME DEFINITIONS (CSS Custom Properties)
+   ══════════════════════════════════════════════ */
+
+:root,
+[data-theme='cyberdeck'] {
+  --c-base: 8 8 15;
+  --c-base-panel: 14 14 26;
+  --c-base-surface: 21 21 34;
+  --c-line: 30 30 50;
+  --c-line-active: 46 46 74;
+  --c-term-green: 0 204 136;
+  --c-term-cyan: 0 170 255;
+  --c-term-amber: 255 170 0;
+  --c-term-red: 255 68 85;
+  --c-txt: 200 200 212;
+  --c-txt-dim: 122 122 142;
+  --c-txt-bright: 232 232 240;
+  /* Orbital nav planet colors */
+  --c-orbital-sun: #ffaa00;
+  --c-orbital-1: #00aaff;
+  --c-orbital-2: #00cc88;
+  --c-orbital-3: #ffaa00;
+  --c-orbital-4: #ff4455;
+}
+
+[data-theme='matrix'] {
+  --c-base: 0 5 0;
+  --c-base-panel: 0 12 0;
+  --c-base-surface: 0 18 0;
+  --c-line: 0 40 0;
+  --c-line-active: 0 60 0;
+  --c-term-green: 0 255 65;
+  --c-term-cyan: 57 255 20;
+  --c-term-amber: 102 255 0;
+  --c-term-red: 255 0 64;
+  --c-txt: 0 200 0;
+  --c-txt-dim: 0 120 0;
+  --c-txt-bright: 0 255 0;
+  --c-orbital-sun: #66ff00;
+  --c-orbital-1: #39ff14;
+  --c-orbital-2: #00ff41;
+  --c-orbital-3: #66ff00;
+  --c-orbital-4: #ff0040;
+}
+
+[data-theme='cyberpunk'] {
+  --c-base: 10 0 18;
+  --c-base-panel: 18 0 32;
+  --c-base-surface: 26 5 48;
+  --c-line: 50 20 80;
+  --c-line-active: 70 30 110;
+  --c-term-green: 255 45 111;
+  --c-term-cyan: 0 240 255;
+  --c-term-amber: 252 238 9;
+  --c-term-red: 255 0 60;
+  --c-txt: 212 200 232;
+  --c-txt-dim: 138 122 158;
+  --c-txt-bright: 240 232 255;
+  --c-orbital-sun: #fcee09;
+  --c-orbital-1: #00f0ff;
+  --c-orbital-2: #ff2d6f;
+  --c-orbital-3: #fcee09;
+  --c-orbital-4: #ff003c;
+}
+
+[data-theme='bloomberg'] {
+  --c-base: 10 14 20;
+  --c-base-panel: 17 24 32;
+  --c-base-surface: 26 35 50;
+  --c-line: 46 52 68;
+  --c-line-active: 60 68 88;
+  --c-term-green: 255 136 0;
+  --c-term-cyan: 51 153 255;
+  --c-term-amber: 255 136 0;
+  --c-term-red: 255 51 68;
+  --c-txt: 212 216 220;
+  --c-txt-dim: 122 128 144;
+  --c-txt-bright: 240 242 245;
+  --c-orbital-sun: #ff8800;
+  --c-orbital-1: #3399ff;
+  --c-orbital-2: #ff8800;
+  --c-orbital-3: #3399ff;
+  --c-orbital-4: #ff3344;
+}
+
+[data-theme='deepspace'] {
+  --c-base: 5 5 16;
+  --c-base-panel: 10 10 32;
+  --c-base-surface: 18 18 48;
+  --c-line: 32 32 80;
+  --c-line-active: 48 48 100;
+  --c-term-green: 123 104 238;
+  --c-term-cyan: 0 191 255;
+  --c-term-amber: 218 165 32;
+  --c-term-red: 255 64 96;
+  --c-txt: 192 192 224;
+  --c-txt-dim: 96 96 160;
+  --c-txt-bright: 224 224 255;
+  --c-orbital-sun: #daa520;
+  --c-orbital-1: #00bfff;
+  --c-orbital-2: #7b68ee;
+  --c-orbital-3: #daa520;
+  --c-orbital-4: #ff4060;
+}
+
 /* ── Reset ── */
 *,
 *::before,
@@ -17,8 +123,8 @@ html {
 }
 
 body {
-  background-color: #08080f;
-  color: #c8c8d4;
+  background-color: rgb(var(--c-base));
+  color: rgb(var(--c-txt));
   font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
   font-size: 14px;
   line-height: 1.6;
@@ -33,27 +139,27 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #08080f;
+  background: rgb(var(--c-base));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e1e32;
+  background: rgb(var(--c-line));
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2e2e4a;
+  background: rgb(var(--c-line-active));
 }
 
 /* ── Selection ── */
 ::selection {
-  background: rgba(0, 170, 255, 0.2);
-  color: #e8e8f0;
+  background: rgb(var(--c-term-cyan) / 0.2);
+  color: rgb(var(--c-txt-bright));
 }
 
 /* ── Focus ── */
 :focus-visible {
-  outline: 2px solid #00aaff;
+  outline: 2px solid rgb(var(--c-term-cyan));
   outline-offset: 2px;
 }
 
@@ -82,7 +188,7 @@ a {
 
 /* ── Grid overlay ── */
 .grid-overlay {
-  background-image: radial-gradient(circle, rgba(30, 30, 50, 0.3) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgb(var(--c-line) / 0.3) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -94,7 +200,7 @@ a {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(0, 204, 136, 0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgb(var(--c-term-green) / 0.08), transparent);
   animation: scan 8s linear infinite;
   pointer-events: none;
   z-index: 60;
@@ -157,13 +263,13 @@ a {
 .card-hover:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 4px 24px rgba(0, 204, 136, 0.08),
-    0 0 0 1px rgba(0, 204, 136, 0.1);
+    0 4px 24px rgb(var(--c-term-green) / 0.08),
+    0 0 0 1px rgb(var(--c-term-green) / 0.1);
 }
 
 /* ── Glow text on hover ── */
 .glow-hover:hover {
-  text-shadow: 0 0 8px rgba(0, 204, 136, 0.4);
+  text-shadow: 0 0 8px rgb(var(--c-term-green) / 0.4);
 }
 
 /* ── Glitch hover effect ── */
@@ -261,7 +367,7 @@ a {
 
 @keyframes achievementFlash {
   0% {
-    background-color: rgba(0, 204, 136, 0.2);
+    background-color: rgb(var(--c-term-green) / 0.2);
   }
   100% {
     background-color: transparent;
@@ -324,4 +430,74 @@ a {
     transform: none;
     filter: none;
   }
+}
+
+/* ══════════════════════════════════════════════
+   MULTI-PANEL LAYOUT
+   ══════════════════════════════════════════════ */
+
+.panel-active .main-content {
+  max-width: calc(100% - 360px);
+  transition: max-width 0.3s ease;
+}
+
+.panel-sidebar {
+  position: fixed;
+  top: 48px;
+  right: 0;
+  bottom: 0;
+  width: 350px;
+  border-left: 1px solid rgb(var(--c-line));
+  background: rgb(var(--c-base-panel) / 0.95);
+  backdrop-filter: blur(12px);
+  overflow-y: auto;
+  z-index: 45;
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ── Mission timeline ── */
+.mission-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, rgb(var(--c-term-green) / 0.4), rgb(var(--c-line) / 0.2));
+}
+
+/* ── Warp speed overlay flash ── */
+.warp-flash {
+  animation: warpFlash 0.9s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes warpFlash {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.15;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ── Theme transition ── */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
 }

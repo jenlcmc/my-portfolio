@@ -24,6 +24,23 @@ export const projects: Project[] = [
     status: 'in-progress',
   },
   {
+    title: 'HAR - Human Activity Recognition',
+    description:
+      'Machine Learning team project for recognizing human activities using machine learning and kaggle dataset. Involves data preprocessing, feature engineering, and model training for activity classification. This include using custom EfficentNet and RestNet along with KNN',
+    tech: [
+      'Python',
+      'Pandas',
+      'Scikit-learn',
+      'Pytorch',
+      'Jupyter',
+      'NumPy',
+      'Matplotlib',
+      'Seaborn',
+    ],
+    github: 'https://github.com/jenlcmc/Intro-to-ML-/tree/uyen_branch',
+    status: 'complete',
+  },
+  {
     title: 'Senior Design -- Travel Web App',
     description:
       'Team project for senior design class. A travel web app for trip planning, expense management, itinerary collaboration, and hotel booking among group members.',

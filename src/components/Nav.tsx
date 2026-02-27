@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useActiveSection } from '../hooks/useActiveSection';
+import { useWarp } from '../contexts/WarpContext';
+import { useAchievements } from '../contexts/AchievementContext';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const LINKS = [
   { label: 'home', target: 'hero' },
@@ -11,13 +14,23 @@ const LINKS = [
 
 interface NavProps {
   onOpenTerminal: () => void;
+  onOpenInventory: () => void;
+  onTogglePanel: () => void;
+  panelOpen: boolean;
 }
 
-export default function Nav({ onOpenTerminal }: NavProps) {
+export default function Nav({
+  onOpenTerminal,
+  onOpenInventory,
+  onTogglePanel,
+  panelOpen,
+}: NavProps) {
   const [visible, setVisible] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const lastY = useRef(0);
   const active = useActiveSection();
+  const { triggerWarp } = useWarp();
+  const { unlockedCount, total } = useAchievements();
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,7 +42,6 @@ export default function Nav({ onOpenTerminal }: NavProps) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Keyboard shortcuts: / = mobile menu, ` or Ctrl+K = terminal
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement)?.tagName;
@@ -49,14 +61,22 @@ export default function Nav({ onOpenTerminal }: NavProps) {
         e.preventDefault();
         onOpenTerminal();
       }
+
+      if (e.key === 'i' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        onOpenInventory();
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [onOpenTerminal]);
+  }, [onOpenTerminal, onOpenInventory]);
 
   const scrollTo = (id: string) => {
     setMobileOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    triggerWarp();
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
   };
 
   return (
@@ -82,7 +102,7 @@ export default function Nav({ onOpenTerminal }: NavProps) {
             sector: {active}
           </span>
 
-          {/* Desktop links */}
+          {/* Desktop links + tools */}
           <div className="hidden sm:flex gap-1 items-center">
             {LINKS.map(({ label, target }) => (
               <button
@@ -97,15 +117,53 @@ export default function Nav({ onOpenTerminal }: NavProps) {
                 {label}
               </button>
             ))}
-            {/* Terminal button */}
+
+            <span className="w-px h-4 bg-line/50 mx-1" />
+
+            {/* Terminal */}
             <button
               onClick={onOpenTerminal}
-              className="ml-2 px-2 py-1 text-[10px] text-txt-dim/50 border border-line/50 rounded hover:text-term-green hover:border-term-green/30 transition-colors"
+              className="px-2 py-1 text-[10px] text-txt-dim/50 border border-line/50 rounded hover:text-term-green hover:border-term-green/30 transition-colors"
               aria-label="Open command terminal"
               title="Open terminal (~)"
             >
               &gt;_
             </button>
+
+            {/* Inventory */}
+            <button
+              onClick={onOpenInventory}
+              className="px-2 py-1 text-[10px] text-txt-dim/50 border border-line/50 rounded hover:text-term-amber hover:border-term-amber/30 transition-colors"
+              aria-label="Open inventory"
+              title="Inventory (Ctrl+I)"
+            >
+              INV
+            </button>
+
+            {/* Panel toggle */}
+            <button
+              onClick={onTogglePanel}
+              className={`px-2 py-1 text-[10px] border border-line/50 rounded transition-colors ${
+                panelOpen
+                  ? 'text-term-cyan border-term-cyan/30 bg-term-cyan/5'
+                  : 'text-txt-dim/50 hover:text-term-cyan hover:border-term-cyan/30'
+              }`}
+              aria-label="Toggle multi-panel view"
+              title="Toggle panel view"
+            >
+              ⊞
+            </button>
+
+            {/* Theme switcher */}
+            <ThemeSwitcher />
+
+            {/* Achievement counter */}
+            <span
+              className="px-2 py-1 text-[10px] text-txt-dim/40 border border-line/30 rounded cursor-default"
+              title="Achievements unlocked"
+            >
+              🏆 {unlockedCount}/{total}
+            </span>
           </div>
 
           {/* Mobile toggle */}
@@ -121,7 +179,7 @@ export default function Nav({ onOpenTerminal }: NavProps) {
 
         {/* Mobile dropdown */}
         {mobileOpen && (
-          <div className="border-t border-line bg-base-panel px-4 py-2 space-y-1 animate-fade-in">
+          <div className="border-t border-line bg-base-panel px-4 py-2 space-y-1 animate-fade-in sm:hidden">
             {LINKS.map(({ label, target }) => (
               <button
                 key={target}
@@ -135,15 +193,27 @@ export default function Nav({ onOpenTerminal }: NavProps) {
                 {label}
               </button>
             ))}
-            <button
-              onClick={() => {
-                setMobileOpen(false);
-                onOpenTerminal();
-              }}
-              className="block w-full text-left px-3 py-2 text-xs text-txt-dim hover:text-term-green transition-colors rounded"
-            >
-              &gt;_ terminal
-            </button>
+            <div className="flex items-center gap-2 pt-2 border-t border-line/50">
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  onOpenTerminal();
+                }}
+                className="px-3 py-2 text-xs text-txt-dim hover:text-term-green transition-colors rounded"
+              >
+                &gt;_ terminal
+              </button>
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  onOpenInventory();
+                }}
+                className="px-3 py-2 text-xs text-txt-dim hover:text-term-amber transition-colors rounded"
+              >
+                🎒 inventory
+              </button>
+              <ThemeSwitcher />
+            </div>
             <p className="text-[10px] text-txt-dim/40 text-center pt-1">
               <kbd className="px-1 border border-line rounded text-txt-dim">/</kbd> menu{' '}
               <kbd className="px-1 border border-line rounded text-txt-dim">`</kbd> terminal

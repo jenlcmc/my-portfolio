@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Section from '../components/Section';
+import SSHLink from '../components/SSHLink';
 import { projects, type Project } from '../data/projects';
 
 const STATUS_LABEL: Record<Project['status'], string> = {
@@ -74,15 +75,14 @@ function QuestCard({ project, index }: { project: Project; index: number }) {
             ))}
           </div>
           {project.github && (
-            <a
+            <SSHLink
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-xs text-txt-dim hover:text-term-cyan transition-colors mt-3"
-              onClick={(e) => e.stopPropagation()}
             >
               <span className="text-term-green">&gt;</span> view source --&gt;
-            </a>
+            </SSHLink>
           )}
         </div>
       )}
