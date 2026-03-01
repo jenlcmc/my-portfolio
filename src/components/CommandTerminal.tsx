@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTheme, THEME_META, type ThemeName } from '../contexts/ThemeContext';
 import { useAchievements } from '../contexts/AchievementContext';
 import { useWarp } from '../contexts/WarpContext';
-import { RARITY_COLOR } from '../data/achievements';
 
 interface CommandTerminalProps {
   open: boolean;

@@ -16,12 +16,30 @@ export const projects: Project[] = [
     status: 'active',
   },
   {
+    title: 'Trade Lens',
+    description:
+      'A fully automated financial signal stock and crypto analysis engine pipeline that ingests SEC insider filings, congressional trades, and market data, then runs them through 10 ML models to  (including FinBERT and Chronos-T5) to generate buy/sell signals, simulate paper trading, and deliver evidence-based alerts via Discord.',
+    tech: [
+      'Python 3.12',
+      'PyTorch',
+      'HuggingFace Transformers',
+      'XGBoost',
+      'Amazon Chronos-T5',
+      'MariaDB',
+      'Streamlit',
+      'Plotly',
+      'pytest',
+    ],
+    github: 'coming soon',
+    status: 'in-progress',
+  },
+  {
     title: 'Fand -- Food Randomizer',
     description:
       'Helps indecisive people find new food by choosing random cuisines for them. Built with a modern component library and random generation logic.',
-    tech: ['React', 'MUI', 'TypeScript', 'Vite'],
-    github: 'https://github.com/jenlcmc/Fand',
-    status: 'in-progress',
+    tech: ['React', 'TypeScript', 'Vite', 'Cloudflare Pages'],
+    github: 'https://fand-3lv.pages.dev/',
+    status: 'active',
   },
   {
     title: 'HAR - Human Activity Recognition',
