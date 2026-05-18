@@ -21,14 +21,46 @@ const STATUS_COLOR: Record<Project['status'], string> = {
   complete: 'text-txt-dim border-line bg-transparent',
 };
 
+const STATUS_GLOW: Record<Project['status'], string> = {
+  active: 'hover:border-term-green/60 hover:shadow-[0_0_12px_rgba(0,255,65,0.08)]',
+  'in-progress': 'hover:border-term-amber/60 hover:shadow-[0_0_12px_rgba(255,176,0,0.08)]',
+  complete: 'hover:border-line/60',
+};
+
+function ImageThumbnail({ src, title }: { src: string; title: string }) {
+  const [loaded, setLoaded] = useState(false);
+  const [errored, setErrored] = useState(false);
+
+  if (errored) return null;
+
+  return (
+    <div className="relative -mx-4 -mt-4 mb-3 overflow-hidden border-b border-line/40">
+      {!loaded && (
+        <div className="h-28 flex items-center justify-center bg-surface/30">
+          <span className="text-[10px] text-txt-dim/30 animate-pulse font-mono">loading preview...</span>
+        </div>
+      )}
+      <div className={`relative transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0 h-0'}`}>
+        <img
+          src={src}
+          alt={`${title} screenshot`}
+          className="w-full h-32 object-cover object-top"
+          onLoad={() => setLoaded(true)}
+          onError={() => setErrored(true)}
+        />
+        <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_3px,rgba(0,0,0,0.06)_3px,rgba(0,0,0,0.06)_4px)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg/60" />
+      </div>
+    </div>
+  );
+}
+
 function QuestCard({ project, index }: { project: Project; index: number }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <div
-      className={`border rounded p-4 transition-all duration-300 cursor-pointer group ${
-        STATUS_COLOR[project.status]
-      } ${expanded ? 'ring-1 ring-term-green/20' : ''}`}
+      className={`border rounded p-4 transition-all duration-300 cursor-pointer group ${STATUS_COLOR[project.status]} ${STATUS_GLOW[project.status]} ${expanded ? 'ring-1 ring-term-green/20' : ''}`}
       onClick={() => setExpanded(!expanded)}
       role="button"
       tabIndex={0}
@@ -36,13 +68,16 @@ function QuestCard({ project, index }: { project: Project; index: number }) {
         if (e.key === 'Enter') setExpanded(!expanded);
       }}
     >
+      {/* Image thumbnail — always visible */}
+      {project.image && <ImageThumbnail src={project.image} title={project.title} />}
+
       {/* Quest header */}
       <div className="flex items-start justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-mono text-txt-dim/40">
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="text-[10px] font-mono text-txt-dim/40 shrink-0">
             #{String(index + 1).padStart(2, '0')}
           </span>
-          <h3 className="text-sm text-txt-bright font-medium leading-snug group-hover:text-term-cyan transition-colors glitch-hover">
+          <h3 className="text-sm text-txt-bright font-medium leading-snug group-hover:text-term-cyan transition-colors glitch-hover truncate">
             {project.title}
           </h3>
         </div>
@@ -50,39 +85,51 @@ function QuestCard({ project, index }: { project: Project; index: number }) {
           {project.status === 'active' && (
             <span className="w-1.5 h-1.5 rounded-full bg-term-green animate-pulse-slow" />
           )}
+          {project.status === 'in-progress' && (
+            <span className="w-1.5 h-1.5 rounded-full bg-term-amber animate-pulse-slow" />
+          )}
           <span className="text-[10px] uppercase tracking-wider whitespace-nowrap">
             [{STATUS_ICON[project.status]}] {STATUS_LABEL[project.status]}
           </span>
         </div>
       </div>
 
-      {/* Description - always visible but truncated unless expanded */}
+      {/* Description */}
       <p className={`text-xs text-txt-dim leading-relaxed mt-2 ${expanded ? '' : 'line-clamp-2'}`}>
         {project.description}
       </p>
 
       {/* Expanded details */}
       {expanded && (
-        <div className="mt-3 animate-fade-in">
-          <div className="flex flex-wrap gap-1.5">
-            {project.tech.map((t) => (
-              <span
-                key={t}
-                className="px-2 py-0.5 text-[10px] text-term-cyan bg-term-cyan/10 rounded border border-term-cyan/20"
-              >
-                {t}
-              </span>
-            ))}
+        <div className="mt-3 animate-fade-in space-y-3">
+          {/* Tech stack */}
+          <div>
+            <span className="text-[9px] uppercase tracking-widest text-txt-dim/40 block mb-1.5">stack</span>
+            <div className="flex flex-wrap gap-1.5">
+              {project.tech.map((t) => (
+                <span
+                  key={t}
+                  className="px-2 py-0.5 text-[10px] text-term-cyan bg-term-cyan/10 rounded border border-term-cyan/20"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
-          {project.github && (
+
+          {/* Link */}
+          {project.github && project.github !== 'coming soon' && (
             <SSHLink
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-txt-dim hover:text-term-cyan transition-colors mt-3"
+              className="inline-flex items-center gap-1 text-xs text-txt-dim hover:text-term-cyan transition-colors"
             >
               <span className="text-term-green">&gt;</span> view source --&gt;
             </SSHLink>
+          )}
+          {project.github === 'coming soon' && (
+            <span className="text-[10px] text-txt-dim/40 font-mono">// source: coming soon</span>
           )}
         </div>
       )}

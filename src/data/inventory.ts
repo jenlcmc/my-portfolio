@@ -87,6 +87,14 @@ export const inventory: InventoryItem[] = [
     icon: '⚛️',
   },
   {
+    name: 'PyTorch',
+    category: 'armor',
+    rarity: 'epic',
+    level: 80,
+    description: 'Gradient descent gauntlet. Backpropagates through reality.',
+    icon: '🔥',
+  },
+  {
     name: 'Node.js',
     category: 'armor',
     rarity: 'epic',
@@ -103,6 +111,14 @@ export const inventory: InventoryItem[] = [
     icon: '🎨',
   },
   {
+    name: 'Scikit-learn',
+    category: 'armor',
+    rarity: 'rare',
+    level: 72,
+    description: 'Classic ML grimoire. Fits models without the ceremony.',
+    icon: '📐',
+  },
+  {
     name: 'Spring Boot',
     category: 'armor',
     rarity: 'rare',
@@ -117,6 +133,14 @@ export const inventory: InventoryItem[] = [
     level: 60,
     description: 'Lightweight tunic. Agile and minimal.',
     icon: '🧪',
+  },
+  {
+    name: 'Express.js',
+    category: 'armor',
+    rarity: 'rare',
+    level: 65,
+    description: 'Routing robe. Middleware magic on every request.',
+    icon: '🚂',
   },
   {
     name: 'Next.js',
@@ -153,6 +177,14 @@ export const inventory: InventoryItem[] = [
     icon: '🔄',
   },
   {
+    name: 'Jupyter Notebook',
+    category: 'consumable',
+    rarity: 'rare',
+    level: 82,
+    description: 'Notebook spellbook. Runs cells like incantations.',
+    icon: '📓',
+  },
+  {
     name: 'Docker',
     category: 'consumable',
     rarity: 'rare',
@@ -167,6 +199,30 @@ export const inventory: InventoryItem[] = [
     level: 75,
     description: 'Cloud elixir. Infinite scaling energy.',
     icon: '☁️',
+  },
+  {
+    name: 'Azure',
+    category: 'consumable',
+    rarity: 'epic',
+    level: 72,
+    description: 'Blue cloud tonic. Enterprise-grade sky power.',
+    icon: '🔷',
+  },
+  {
+    name: 'Terraform',
+    category: 'consumable',
+    rarity: 'rare',
+    level: 62,
+    description: 'Infrastructure stone. Declares the cloud into existence.',
+    icon: '🏗️',
+  },
+  {
+    name: 'Ansible',
+    category: 'consumable',
+    rarity: 'rare',
+    level: 65,
+    description: 'Automation rune. Orchestrates machines with YAML.',
+    icon: '⚙️',
   },
   {
     name: 'PostgreSQL',
@@ -191,6 +247,22 @@ export const inventory: InventoryItem[] = [
     level: 80,
     description: 'Penguin remedy. sudo make me_a_sandwich.',
     icon: '🐧',
+  },
+  {
+    name: 'Jira',
+    category: 'consumable',
+    rarity: 'uncommon',
+    level: 72,
+    description: 'Ticket scroll. Tracks every quest in the backlog.',
+    icon: '📋',
+  },
+  {
+    name: 'Figma',
+    category: 'consumable',
+    rarity: 'uncommon',
+    level: 68,
+    description: 'Design mirror. Turns pixels into prototypes.',
+    icon: '🖼️',
   },
 
   /* ── ARTIFACTS (Domains) ── */
@@ -225,6 +297,22 @@ export const inventory: InventoryItem[] = [
     level: 70,
     description: 'Pipeline ring. Automates the eternal cycle.',
     icon: '♾️',
+  },
+  {
+    name: 'DevOps',
+    category: 'artifact',
+    rarity: 'rare',
+    level: 70,
+    description: 'Ops sigil. Bridges code to production seamlessly.',
+    icon: '🔁',
+  },
+  {
+    name: 'Computer Vision',
+    category: 'artifact',
+    rarity: 'rare',
+    level: 63,
+    description: 'Sight crystal. Teaches machines to perceive the world.',
+    icon: '👁️',
   },
 ];
 

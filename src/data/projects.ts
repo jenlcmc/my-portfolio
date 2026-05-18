@@ -4,6 +4,7 @@ export interface Project {
   tech: string[];
   github: string;
   status: 'active' | 'in-progress' | 'complete';
+  image?: string;
 }
 
 export const projects: Project[] = [
@@ -11,99 +12,98 @@ export const projects: Project[] = [
     title: 'Personal Portfolio',
     description:
       'Personal website built with React, Tailwind CSS, and TypeScript. Showcases background, projects, skills, and contact information.',
-    tech: ['React', 'Tailwind CSS', 'TypeScript', 'Vite'],
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'HTML/CSS'],
     github: 'https://github.com/jenlcmc/my-portfolio',
     status: 'active',
   },
   {
-    title: 'Trade Lens',
+    title: 'Stock Return Prediction',
     description:
-      'A fully automated financial signal stock and crypto analysis engine pipeline that ingests SEC insider filings, congressional trades, and market data, then runs them through 10 ML models to  (including FinBERT and Chronos-T5) to generate buy/sell signals, simulate paper trading, and deliver evidence-based alerts via Discord.',
-    tech: [
-      'Python 3.12',
-      'PyTorch',
-      'HuggingFace Transformers',
-      'XGBoost',
-      'Amazon Chronos-T5',
-      'MariaDB',
-      'Streamlit',
-      'Plotly',
-      'pytest',
-    ],
-    github: 'coming soon',
+      'Transformer-based fusion ML (from TimeXer model) system that forecasts 7-day and 14-day stock returns across the S&P 100 by fusing price history, congressional STOCK Act filings, and SEC insider transactions. Uses multi-scale cross-sectional peer attention and quantile regression to generate directional buy/sell signals from alternative data.',
+    tech: ['Python', 'PyTorch', 'NumPy', 'Pandas', 'SQL', 'Transformer Models'],
+    github: 'https://github.com/jenlcmc/stock_return_prediction',
+    status: 'complete',
+    image: '/projects/stock_prediction.png',
+  },
+  {
+    title: 'GraphRAG Tax Assistant',
+    description:
+      'Hybrid retrieval-augmented generation system for federal income tax Q&A (Form 1040). Fuses dense vector search (FAISS), sparse BM25 keyword matching, and graph-based knowledge graph traversal via Reciprocal Rank Fusion to ground LLM answers in specific IRC sections and IRS publications.',
+    tech: ['Python', 'PyTorch', 'FAISS', 'BM25', 'NetworkX', 'LLMs'],
+    github: 'https://github.com/jenlcmc/graphrag_tax/tree/overhaul_architecture',
     status: 'in-progress',
+    image: '/projects/rag.png',
   },
   {
     title: 'Fand -- Food Randomizer',
     description:
       'Helps indecisive people find new food by choosing random cuisines for them. Built with a modern component library and random generation logic.',
-    tech: ['React', 'TypeScript', 'Vite', 'Cloudflare Pages'],
-    github: 'https://fand-3lv.pages.dev/',
-    status: 'active',
+    tech: ['React', 'TypeScript', 'JavaScript', 'Vite', 'HTML/CSS'],
+    github: 'https://fand-3lv.pages.dev',
+    status: 'complete',
+    image: '/projects/fand.png',
   },
   {
     title: 'HAR - Human Activity Recognition',
     description:
-      'Machine Learning team project for recognizing human activities using machine learning and kaggle dataset. Involves data preprocessing, feature engineering, and model training for activity classification. This include using custom EfficentNet and RestNet along with KNN',
-    tech: [
-      'Python',
-      'Pandas',
-      'Scikit-learn',
-      'Pytorch',
-      'Jupyter',
-      'NumPy',
-      'Matplotlib',
-      'Seaborn',
-    ],
+      'ML team project for classifying human activities from sensor data using custom EfficientNet, ResNet, and KNN models. Covers full pipeline: data preprocessing, feature engineering, and model training on a Kaggle dataset.',
+    tech: ['Python', 'PyTorch', 'Pandas', 'NumPy', 'Scikit-learn', 'R'],
     github: 'https://github.com/jenlcmc/Intro-to-ML-/tree/uyen_branch',
     status: 'complete',
+    image: '/projects/har.png',
   },
   {
     title: 'Senior Design -- Travel Web App',
     description:
-      'Team project for senior design class. A travel web app for trip planning, expense management, itinerary collaboration, and hotel booking among group members.',
-    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'MUI', 'TypeScript', 'Go'],
+      'Full-stack team project for senior design. A travel web app for group trip planning, expense management, itinerary collaboration, and hotel booking with real-time features.',
+    tech: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'AWS', 'Docker', 'Jira'],
     github: 'https://github.com/UNLV-CS472-672/2024-S-GROUP6-RW',
     status: 'complete',
+    image: '/projects/travel_planner.png',
   },
   {
     title: 'Gaming Data Visualization',
     description:
-      'Two projects: Steam genre analysis against Metacritic scores using data viz techniques, and Elden Ring game data analysis exploring trends across different in-game mechanics.',
-    tech: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Jupyter', 'NumPy'],
+      'Two data analytics projects: Steam genre analysis against Metacritic scores, and Elden Ring in-game mechanics trend analysis. Explores correlation between game design choices and review outcomes.',
+    tech: ['Python', 'Pandas', 'NumPy', 'R', 'Matplotlib'],
     github: 'https://github.com/jenlcmc/Gaming-Data-Viz',
     status: 'complete',
+    image: '/projects/gaming_data_science.png',
   },
   {
     title: 'Historical Image Restoration',
     description:
-      'Restoring historical images using Python and image processing techniques. Includes filters, color balance adjustments, and scratch removal to bring old photos back to life.',
-    tech: ['Python', 'OpenCV', 'NumPy', 'SciPy', 'Matplotlib'],
+      'Restoring historical images using classical image processing techniques — filters, color balance adjustments, and scratch removal to bring degraded photos back to life.',
+    tech: ['Python', 'OpenCV', 'NumPy', 'Matplotlib'],
     github: 'https://github.com/jenlcmc/Historical-Image-Restoration',
     status: 'complete',
+    image: '/projects/historical_pic.png',
   },
   {
     title: 'School Work Collection',
     description:
-      'Collection of coursework and projects spanning 4 years of undergrad across multiple languages and paradigms.',
-    tech: ['Java', 'C', 'C++', 'Python', 'Assembly', 'R'],
+      'Collection of coursework spanning 4 years of undergrad across systems, algorithms, data structures, and scientific computing in multiple languages and paradigms.',
+    tech: ['Java', 'C++', 'Python', 'JavaScript', 'R', 'SQL'],
     github: 'https://github.com/jenlcmc/School_Work_Collection',
     status: 'complete',
+    image: '/projects/school_work.png',
   },
   {
     title: 'COVID-19 Data Visualization',
     description:
-      'Jupyter notebook showcasing COVID-19 case trends in the United States or by state based on user selection. Uses NYTimes dataset.',
-    tech: ['Python', 'Pandas', 'Matplotlib', 'Jupyter'],
+      'Interactive Jupyter notebook visualizing COVID-19 case trends across the US at national and state level based on user selection. Powered by the NYTimes dataset.',
+    tech: ['Python', 'Pandas', 'Matplotlib', 'NumPy', 'R'],
     github: 'https://github.com/jenlcmc/COVID19-Data-Visualization',
     status: 'complete',
+    image: '/projects/covid_19.png',
   },
   {
     title: 'Alien Invasion (Pygame)',
     description:
-      'Clone of the classic arcade game built with Pygame. A space defender game showcasing Python game development fundamentals.',
+      'Clone of the classic space defender arcade game built with Pygame. Demonstrates Python game loop architecture, sprite management, and collision detection.',
     tech: ['Python', 'Pygame'],
     github: 'https://github.com/jenlcmc/Alien_Invasion',
     status: 'complete',
+    image: '/projects/alien_invasion.png',
   },
 ];
