@@ -22,8 +22,8 @@ export const experiences: Experience[] = [
   {
     company: 'University of Nevada, Las Vegas',
     title: 'High School Robotics Mentor',
-    period: 'Jan 2026 -- Present',
-    current: true,
+    period: 'Jan 2026 -- May 2026',
+    current: false,
     description: [
       'Mentor programming team in developing autonomous and teleoperated robot control systems for FRC competitions',
       'Teach sensor integration, motor control, path planning, and vision processing while fostering problem-solving and collaboration skills.',

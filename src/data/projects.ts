@@ -26,7 +26,7 @@ export const projects: Project[] = [
     image: 'projects/stock_prediction.png',
   },
   {
-    title: 'GraphRAG Tax Assistant',
+    title: 'HybridRAG Tax Assistant',
     description:
       'Hybrid retrieval-augmented generation system for federal income tax Q&A (Form 1040). Fuses dense vector search (FAISS), sparse BM25 keyword matching, and graph-based knowledge graph traversal via Reciprocal Rank Fusion to ground LLM answers in specific IRC sections and IRS publications.',
     tech: ['Python', 'PyTorch', 'FAISS', 'BM25', 'NetworkX', 'LLMs'],
