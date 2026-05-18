@@ -23,7 +23,7 @@ export const projects: Project[] = [
     tech: ['Python', 'PyTorch', 'NumPy', 'Pandas', 'SQL', 'Transformer Models'],
     github: 'https://github.com/jenlcmc/stock_return_prediction',
     status: 'complete',
-    image: '/projects/stock_prediction.png',
+    image: 'projects/stock_prediction.png',
   },
   {
     title: 'GraphRAG Tax Assistant',
@@ -32,7 +32,7 @@ export const projects: Project[] = [
     tech: ['Python', 'PyTorch', 'FAISS', 'BM25', 'NetworkX', 'LLMs'],
     github: 'https://github.com/jenlcmc/graphrag_tax/tree/overhaul_architecture',
     status: 'in-progress',
-    image: '/projects/rag.png',
+    image: 'projects/rag.png',
   },
   {
     title: 'Fand -- Food Randomizer',
@@ -41,7 +41,7 @@ export const projects: Project[] = [
     tech: ['React', 'TypeScript', 'JavaScript', 'Vite', 'HTML/CSS'],
     github: 'https://fand-3lv.pages.dev',
     status: 'complete',
-    image: '/projects/fand.png',
+    image: 'projects/fand.png',
   },
   {
     title: 'HAR - Human Activity Recognition',
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     tech: ['Python', 'PyTorch', 'Pandas', 'NumPy', 'Scikit-learn', 'R'],
     github: 'https://github.com/jenlcmc/Intro-to-ML-/tree/uyen_branch',
     status: 'complete',
-    image: '/projects/har.png',
+    image: 'projects/har.png',
   },
   {
     title: 'Senior Design -- Travel Web App',
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     tech: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'AWS', 'Docker', 'Jira'],
     github: 'https://github.com/UNLV-CS472-672/2024-S-GROUP6-RW',
     status: 'complete',
-    image: '/projects/travel_planner.png',
+    image: 'projects/travel_planner.png',
   },
   {
     title: 'Gaming Data Visualization',
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     tech: ['Python', 'Pandas', 'NumPy', 'R', 'Matplotlib'],
     github: 'https://github.com/jenlcmc/Gaming-Data-Viz',
     status: 'complete',
-    image: '/projects/gaming_data_science.png',
+    image: 'projects/gaming_data_science.png',
   },
   {
     title: 'Historical Image Restoration',
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     tech: ['Python', 'OpenCV', 'NumPy', 'Matplotlib'],
     github: 'https://github.com/jenlcmc/Historical-Image-Restoration',
     status: 'complete',
-    image: '/projects/historical_pic.png',
+    image: 'projects/historical_pic.png',
   },
   {
     title: 'School Work Collection',
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     tech: ['Java', 'C++', 'Python', 'JavaScript', 'R', 'SQL'],
     github: 'https://github.com/jenlcmc/School_Work_Collection',
     status: 'complete',
-    image: '/projects/school_work.png',
+    image: 'projects/school_work.png',
   },
   {
     title: 'COVID-19 Data Visualization',
@@ -95,7 +95,7 @@ export const projects: Project[] = [
     tech: ['Python', 'Pandas', 'Matplotlib', 'NumPy', 'R'],
     github: 'https://github.com/jenlcmc/COVID19-Data-Visualization',
     status: 'complete',
-    image: '/projects/covid_19.png',
+    image: 'projects/covid_19.png',
   },
   {
     title: 'Alien Invasion (Pygame)',
@@ -104,6 +104,6 @@ export const projects: Project[] = [
     tech: ['Python', 'Pygame'],
     github: 'https://github.com/jenlcmc/Alien_Invasion',
     status: 'complete',
-    image: '/projects/alien_invasion.png',
+    image: 'projects/alien_invasion.png',
   },
 ];

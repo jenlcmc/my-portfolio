@@ -69,7 +69,7 @@ function QuestCard({ project, index }: { project: Project; index: number }) {
       }}
     >
       {/* Image thumbnail — always visible */}
-      {project.image && <ImageThumbnail src={project.image} title={project.title} />}
+      {project.image && <ImageThumbnail src={`${import.meta.env.BASE_URL}${project.image}`} title={project.title} />}
 
       {/* Quest header */}
       <div className="flex items-start justify-between gap-2">
